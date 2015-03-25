@@ -6,7 +6,7 @@ Built with [Webhook CMS](http://www.webhook.com).
 
 **Get a copy**
 
-    $ git clone https://github.com/sveroude/car-ui.git
+    $ git clone https://github.com/voorhoede/car-ui.git
 
 **Install Webhook CLI**
 
