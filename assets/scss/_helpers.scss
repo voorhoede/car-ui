@@ -1,0 +1,14 @@
+//
+// Common helpers
+// Import only mixins here, write standalone mixins
+// e.g. '@import 'mixins/border-radius';'
+//
+
+@import 'mixins/box-shadow';
+@import 'mixins/box-sizing';
+@import 'mixins/clearfix';
+@import 'mixins/header-font';
+@import 'mixins/media-queries';
+@import 'mixins/normal-font';
+@import 'mixins/transition';
+@import 'mixins/visually-hidden';

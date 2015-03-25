@@ -1,0 +1,31 @@
+@import 'core/colors';
+
+//
+// Global variables
+//
+// This file doesn't output any CSS rules, so you can import it as often as needed without sending
+// duplicate styles to the browser.
+//
+
+//Font variables
+$helvetica-neue-fallback: 	Arial, sans-serif;
+
+$helvetica-neue-bold: 		$helvetica-neue-fallback;
+$helvetica-neue: 			$helvetica-neue-fallback;
+
+// Paths
+
+$path-fonts: 				'../fonts/';
+$path-images: 				'../images/';
+
+// Widths
+$max-width-tablet: 			900px;
+
+// Break points
+$break-extra-small: 		500px;
+$break-small: 				620px;
+$break-medium: 				900px;
+$break-large: 				920px;
+
+// Intro and summary overlap size
+$intro-summary-overlap: 	500px;

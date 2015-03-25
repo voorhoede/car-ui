@@ -1,0 +1,35 @@
+{% macro widgetScore(item) %}
+<!-- widget-score -->
+<div class="widget-score" data-component="widget-score">
+	<div class="score-overview" data-widget-score-overview>
+		<header>
+			<span class="icon icon-gauge{{ item.gauge_score }}"></span>
+			<span class="score">{{ item.score }}</span> 
+			<span class="icon icon-arrow-down" data-score-header-arrow></span>
+		</header>
+		<ul>
+			{% for widget_score in item.widget_score %}
+			<li>
+				<a href="#{{ widget_score.name }}" tabindex="-1">
+					<span class="label">{{ widget_score.name }}</span>
+					<span class="value">{{ widget_score.score }}</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="score-summary">
+		<ul>
+			{% for points in item.positive_points %}
+				<li><span class="icon icon-plus"></span>{{ points.point }}</li>
+			{% endfor %}
+		</ul>
+		<ul>
+			{% for points in item.negative_points %}
+				<li><span class="icon icon-min-red"></span>{{ points.point }}</li>
+			{% endfor %}  
+		</ul>
+	</div>
+</div>
+<!-- /widget-score -->
+{% endmacro %}

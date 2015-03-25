@@ -1,0 +1,36 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+/* ABOUT VIEW */
+.about {
+	background-color: $light-grey;
+
+	.summary {
+		margin-top: 0;
+		padding-top: 60px;
+
+		.summary-text {
+			p {
+				@include min-screen($break-large) {
+					width: 75%;
+				}
+			}
+		}
+	}
+
+	.detail-intro-text {
+		.intro-content {
+			@include min-screen($break-large) {
+				margin-top: -145px;
+			}
+		}
+
+		.intro-text {
+			p {
+				@include min-screen($break-large) {
+					width: 75%;
+				}
+			}
+		}
+	}
+}

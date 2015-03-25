@@ -1,0 +1,37 @@
+<!-- score -->
+<section class="score" data-component="score">
+	<div class="score-heading">
+		<h1>SCORES</h1>
+		<span class="testing-date-person">{{ item.tagline }}</span>
+	</div>
+	{% for widget_score in item.widget_score %}
+	<div class="score-item {% if loop.first %}is-expanded{% endif %}"
+		 data-expandible
+		 data-expandible-open-on-focus="true"><!--data-expandible-close-on-blur="true"-->
+		<a href="#0"
+		   name="{{ widget_score.name }}"
+		   class="score-title"
+		   data-expandible-handle="toggle">
+			<h2>{{ widget_score.name | capitalize }}</h2>
+			<span class="arrow-box">
+				<span class="score-read-more"></span>
+				<span data-icon-arrow
+					class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}"></span>
+			</span>
+		</a>
+		<div class="score-content {% if widget_score.image %}has-visual{% endif %}" data-expandible-content>
+			<div class="score-box-wrapper">
+				<div class="score-box">
+					<span class="score-number">{{ widget_score.score }}</span>
+					<span class="score-icon icon icon-gauge{{ item.gauge_score }}"></span>
+				</div>
+			</div><!--
+			--><div class="score-description">
+				{{ widget_score.description|safe }}
+			</div>{% if widget_score.image %}<!--
+			--><img class="score-content-visual" src="{{ item.pathToUploads }}{{ widget_score.image|imageSize(200,200) }}" alt="{{ widget_score.name | capitalize }}" />{% endif %}
+		</div>
+	</div>
+	{% endfor %}
+</section>
+<!-- /score -->

@@ -1,0 +1,37 @@
+{% macro featured(title, reviews) %}
+<!-- featured -->
+<div class="featured" data-component="featured">
+    <section class="max-width-centered">
+      <h1>{{ title }}</h1>
+      {% for review in reviews %}
+      <a href="{{ content.url }}" class="featured-content">
+        <img src="{{ review.summary_visual|imageSize(900,200) }}" alt="{{ review.title + ' ' + review.sub_title }}"/>
+
+        <div class="featured-content-wrapper">
+          <time>{{ review.date }}</time>
+          <h2>
+            {{ review.title }}
+            <span class="subtitle">{{ review.sub_title }}</span>
+          </h2>
+          <div class="featured-score">
+            <span class="icon icon-gauge{{ review.gauge_score }}"></span>
+            {{ review.score }}
+          </div>
+          <hr/>
+          <ul>
+            {% for points in review.positive_points %}
+              <li><span class="icon icon-plus-yellow"></span>{{ points.point }}</li>
+            {% endfor %}
+          </ul>
+          <ul>
+            {% for points in review.negative_points %}
+              <li><span class="icon icon-min-red"></span>{{ points.point }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </a>
+      {% endfor %}
+    </section>
+  </div>
+<!-- /featured -->
+{% endmacro %}

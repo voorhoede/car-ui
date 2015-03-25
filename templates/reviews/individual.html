@@ -1,0 +1,9 @@
+{% extends "templates/_base/base.html" %}
+{% import "components/detail-intro/_detail-intro.html" as detailIntro %}
+
+{% block content %}
+  {{ detailIntro.detailIntro(item) }}
+  {% include "components/detail-main/_detail-main.html" %}
+  {% include "components/comments/_comments.html" %}
+  {% include "components/related/_related.html" %}
+{% endblock %}

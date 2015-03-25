@@ -1,0 +1,207 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+/* score component */
+
+.score {
+	width: 100%;
+	max-width: $max-width-tablet;
+	margin-right: auto;
+	margin-left: auto;
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		@include min-screen($break-medium) {
+			display: inline-block;
+		}
+	}
+	.testing-date-person {
+		@include normal-font();
+
+		position: relative;
+		display: inline-block;
+		margin-right: 20px;
+		margin-left: 20px;
+		font-size: 1.2em;
+		color: $white;
+		@include min-screen($break-medium) {
+			position: absolute;
+			right: 0;
+			bottom: 4px;
+			margin-right: 0;
+			margin-left: 0;
+		}
+	}
+	.score-item {
+		margin-bottom: 10px;
+	}
+	.score-heading {
+		position: relative;
+		margin-top: 60px;
+		margin-bottom: 20px;
+	}
+	.score-title,
+	.score-content {
+		background-color: $white;
+		padding-left: 2em;
+		@include min-screen($break-medium) {
+			padding-right: 3em;
+		}
+	}
+	.score-title {
+		display: block;
+		position: relative;
+		padding-top: 1.125em;
+		padding-bottom: 1.125em;
+		text-decoration: none;
+		border-bottom: none;
+		&:hover,
+		&:focus {
+			color: $black;
+			text-decoration: none;
+		}
+		h2 {
+			@include header-font();
+
+			font-size: 25px;
+			margin: 0;
+		}
+	}
+	.score-title {
+		margin-bottom: 1px;
+	}
+	.is-expandible .score-title {
+		margin-bottom: 0;
+	}
+	.is-expanded.is-expandible .score-title {
+		margin-bottom: 1px;
+	}
+	.arrow-box{
+		display: none;
+	}
+	.is-expandible .arrow-box {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 50px;
+		background-color: $black;
+		@include min-screen($break-small) {
+			width: 140px;
+		}
+		.icon {
+			position: absolute;
+			width: 15px;
+			height: 10px;
+			top: 20px;
+			right: 18px;
+		}
+		.score-read-more {
+			@include normal-font();
+
+			color: $white;
+			display: none;
+			font-size: 16px;
+			padding-left: 15px;
+			line-height: 47px;
+			@include min-screen($break-small) {
+				display: inline;
+			}
+		}
+	}
+	.score-read-more:after {
+		content: 'Read more';
+	}
+	.is-expanded .score-read-more:after {
+		content: 'Hide';
+	}
+	.score-content {
+		position: relative;
+		padding-top: 15px;
+		padding-right: 3em;
+		padding-bottom: 15px;
+		@include min-screen($break-medium) {
+			padding-right: 5em;
+			&.has-visual {
+				padding-right: 2em;
+				.score-description {
+					width: 50%;
+				}
+				.score-content-visual {
+					@include box-sizing(border-box);
+					width: 25%;
+					vertical-align: top;
+					padding-left: 20px;
+				}
+			}
+		}
+	}
+	.score-content-visual {
+		margin-top: 1em;
+		max-width: 100%;
+	}
+	.is-expandible .score-content {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.is-expanded.is-expandible .score-content {
+		height: auto;
+		padding-top: 15px;
+		padding-bottom: 30px;
+	}
+	.score-box-wrapper {
+		display: inline-block;
+		vertical-align: top;
+		width: 25%;
+
+	}
+	.score-box {
+		position: relative;
+		margin-bottom: 20px;
+		width: 175px;
+		height: 80px;
+		background-color: $yellow;
+		@include min-screen($break-medium) {
+			margin-bottom: 0;
+		}
+	}
+	.score-number {
+		@include header-font();
+
+		display: inline-block;
+		vertical-align: top;
+		padding-top: 5px;
+		padding-left: 17px;
+		font-size: 36px;
+	}
+	.score-icon.icon-gauge1,
+	.score-icon.icon-gauge2,
+	.score-icon.icon-gauge3,
+	.score-icon.icon-gauge4,
+	.score-icon.icon-gauge5 {
+		position: absolute;
+		top: 12px;
+		right: 50px;
+		width: 50px;
+		height: 50px;
+	}
+	.score-content .score-description {
+		margin: 0;
+		 @include min-screen($break-medium) {
+			 display: inline-block;
+			 width: 75%;
+
+			 p:first-child {
+			 	margin-top: 0;
+			 }
+		 }
+	 }
+	.is-expandible .score-content {
+		height: 0;
+		overflow: hidden;
+		transition: height 0.2s ease-out;
+	}
+}

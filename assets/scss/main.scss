@@ -1,0 +1,44 @@
+//
+// Main stylesheet
+//
+
+@import 'base';
+@import 'modules';
+
+body {
+	font-size: 10px;
+
+	&:after {
+		display: none;
+		content: 'extra-small';
+
+		@include min-screen($break-small){
+			content: 'small';
+		}
+
+		@include min-screen($break-medium){
+			content: 'medium';
+		}
+
+		@include min-screen($break-large){
+			content: 'large';
+		}
+	}
+}
+
+.max-width-centered {
+	max-width: $max-width-tablet;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+hr {
+	background-color: $light-grey;
+	border: none;
+	height: 1px;
+	margin: 0 auto;
+}
+
+.equalHeight {
+	@include transition(height .2s ease-out);
+}

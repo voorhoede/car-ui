@@ -1,0 +1,18 @@
+<header class="header" data-component="header">
+	<div class="header-content">
+		<div class="logo-area">
+			<a href="/" class="logo icon-car-ux-logo">CAR UI</a>
+		</div>
+		<nav>
+			<ul>
+				{% for item in cms.navigation.navigation %}
+				<li {% if getCurrentUrl() == item.url %}class="active-nav-item" {% endif %}>
+					<a href="{{ item.url }}">{{ item.navigation_item }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+	<div class="header-background-left"></div>
+	<div class="header-background-right"></div>
+</header>

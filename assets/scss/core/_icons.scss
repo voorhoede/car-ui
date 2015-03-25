@@ -1,0 +1,52 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+.icon {
+	@include hide-text();
+
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+
+	&.icon-gauge1,
+	&.icon-gauge2,
+	&.icon-gauge3,
+	&.icon-gauge4,
+	&.icon-gauge5 {
+		width: 54px;
+		height: 54px;
+	}
+
+	&.icon-min,
+	&.icon-min-red,
+	&.icon-min-dark-grey,
+	&.icon-min-light-grey,
+	&.icon-plus,
+	&.icon-plus-yellow {
+		width: 19px;
+		height: 19px;
+	}
+
+	&.icon-arrow-down,
+	&.icon-arrow-up,
+	&.icon-arrow-down-white,
+	&.icon-arrow-up-white {
+		width: 30px;
+		height: 20px;
+	}
+
+	&.icon-car-ux-logo-white {
+		width: 60px;
+		height: 43px;
+	}
+
+	&.icon-unitid-logo {
+		width: 107px;
+		height: 49px;
+	}
+
+	&.icon-voorhoede-logo {
+		width: 49px;
+		height: 49px;
+	}
+}

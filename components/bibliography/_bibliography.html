@@ -1,0 +1,16 @@
+<div class="bibliography" data-component="bibliography">
+  <section class="max-width-centered">
+    <h1>Source</h1>
+    <ol>
+      {% for source in cms.about.source %}
+      <li>
+        {{ loop.index }}:
+        {% if source.title %}
+          {{ source.title }}
+        {% endif %}
+        {% if source.title %}({% endif %}<a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}</a>{% if source.title %}){% endif %}{% if not loop.last %},{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+</div>

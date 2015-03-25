@@ -1,0 +1,156 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+/* footer component */
+
+.footer {
+	@include clearfix;
+
+	background-color: $black;
+
+	h1,
+	h2 {
+		margin-top: 0;
+	}
+
+	.footer-contact {
+		@include box-sizing(border-box);
+
+		background-color: $yellow;
+		padding: 30px;
+
+		@include min-screen($break-medium) {
+			float: right;
+			width: 31.5%;
+		}
+
+		h2 {
+			@include header-font();
+
+			font-size: 25px;
+		}
+
+		p {
+			padding: 20px 0;
+		}
+	}
+
+	.footer-content {
+		@include box-sizing(border-box);
+		position: relative;
+
+		color: $white;
+		padding: 30px;
+
+		@include min-screen($break-medium) {
+			float: right;
+			width: 68.5%;
+		}
+
+		@include min-screen($break-large) {
+			padding-left: 0;
+		}
+
+		p {
+			padding-bottom: 20px;
+		}
+	}
+
+	.footer-branding {
+		display: inline-block;
+		a {
+			display: inline-block;
+			margin-right: 30px;
+			border-bottom: none;
+			&:last-of-type {
+				margin-right: 0;
+			}
+			@include min-screen($break-extra-small){
+				margin-right: 45px;
+			}
+			@include min-screen($break-small){
+				margin-right: 30px;
+			}
+		}
+
+		.icon-car-ux-logo-white {
+			width: 48px;
+			height: 34px;
+		}
+
+		.icon-unitid-logo {
+			width: 86px;
+			height: 39px;
+		}
+
+		.icon-voorhoede-logo {
+			width: 39px;
+			height: 39px;
+		}
+
+		@include min-screen($break-extra-small){
+			.icon-car-ux-logo-white {
+				width: 90px;
+				height: 64px;
+			}
+
+			.icon-unitid-logo {
+				width: 161px;
+				height: 74px;
+			}
+
+			.icon-voorhoede-logo {
+				width: 74px;
+				height: 74px;
+			}
+		}
+
+		@include min-screen($break-small){
+
+			.icon-car-ux-logo-white {
+				width: 60px;
+				height: 43px;
+			}
+
+			.icon-unitid-logo {
+				width: 107px;
+				height: 49px;
+			}
+
+			.icon-voorhoede-logo {
+				width: 49px;
+				height: 49px;
+			}
+		}
+	}
+
+	.footer-social {
+		@include transition(margin .2s ease-out);
+		position: inherit;
+		padding-top: 50px;
+
+		@include min-screen($break-small) {
+			position: absolute;
+			right: 30px;
+			bottom: 30px;
+		}
+
+		.social-button {
+			@include transition(background .2s ease-out);
+			@include hide-text;
+
+			display: inline-block;
+			border: none;
+			width: 30px;
+			height: 30px;
+			margin-right: 2px;
+		}
+
+		p {
+			font-size: 23px;
+			line-height: 1;
+			margin: 0;
+			padding: 10px 0;
+		}
+	}
+}

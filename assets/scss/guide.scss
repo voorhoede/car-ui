@@ -1,0 +1,342 @@
+@import 'variables';
+@import 'helpers';
+
+@import '../../vendor/app-guide-font/app-guide-font';
+
+$guide-link-color: #ADBCC7;
+$guide-graphic-color: #708091;
+$guide-swatch-size: 80px;
+$guide-box-size: 126px;
+
+/*These rules are added to not break the app guide layout*/
+.app-guide-preview {
+	.summary {
+		margin-top: 0;
+	}
+	.detail-main {
+		.summary,
+		.quote,
+		.highlight,
+		.score {
+			display: none;
+		}
+	}
+	.home-main {
+		.featured,
+		.shortlist {
+			display: none;
+		}
+	}
+}
+
+/*Guide styles*/
+.core-layout {
+	width: 100%;
+	background-color: $light-grey;
+}
+
+.app-guide-content {
+	@include box-sizing(border-box);
+	width: 100%;
+	max-width: $max-width-tablet;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-left: 30px;
+	background-color: $white;
+}
+
+.app-guide-content.app-guide-markdown {
+	padding-top: 0;
+	padding-bottom: 20px;
+	p {
+		margin: 0;
+	}
+}
+
+.app-guide-content.app-guide-header {
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+
+.app-guide-subtitle {
+	margin-bottom: 0;
+	line-height: normal;
+}
+
+.style-guide {
+	padding-bottom: 60px;
+}
+
+.app-guide-section {
+	padding: 2em 3em;
+}
+
+.app-guide-content {
+	p {
+		max-width: 48em;
+		line-height: 1.5em;
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+}
+
+.app-guide-section-title {
+	position: relative;
+}
+
+.app-guide-logo-box {
+	display: inline-block;
+	margin-right: 4px;
+	padding: 10px;
+}
+
+.app-guide-logo-box-1 {
+	background-color: $yellow;
+}
+
+.app-guide-logo-box-2 {
+	background-color: $black;
+}
+
+.app-guide-logo {
+	display: block;
+	width: 100%;
+	max-width: 130px;
+}
+
+a {
+	border: none;
+}
+
+a.app-guide-icon {
+	color: $guide-link-color;
+	text-decoration: none;
+	border-bottom: none;
+	font-size: 18px;
+}
+
+.app-guide-permalink {
+	position: absolute;
+	left: -25px;
+	text-decoration: none;
+
+	&:before {
+		content: '\e602';
+	}
+}
+
+.app-guide-example {
+	padding: 1.5em 10px;
+}
+
+.app-guide-preview {
+	position: relative;
+	@include clearfix();
+}
+
+.app-guide-preview-top,
+.app-guide-preview-bottom {
+	position: relative;
+}
+
+.app-guide-preview-top {
+	margin-top: 2em;
+}
+
+.app-guide-preview-bottom {
+	margin-bottom: 2em;
+}
+
+.app-guide-crop-mark {
+	position: relative;
+	&:before,
+	&:after {
+		content: " ";
+		display: block;
+		position: absolute;
+		width: 1em;
+		height: 1em;
+		border-color: $guide-graphic-color;
+		border-style: solid;
+	}
+	&:before {
+		left: -1em;
+	}
+	&:after {
+		right: -1em;
+	}
+}
+
+.app-guide-preview-top .app-guide-crop-mark {
+	&:before,
+	&:after {
+		top: -1em;
+	}
+	&:before {
+		border-width: 0 2px 2px 0;
+	}
+	&:after {
+		border-width: 0 0 2px 2px;
+	}
+}
+
+.app-guide-preview-bottom .app-guide-crop-mark {
+	&:before {
+		border-width: 2px 2px 0 0;
+	}
+	&:after {
+		border-width: 2px 0 0 2px;
+	}
+}
+
+.app-guide-code {
+	position: relative;
+	font-size: 16px;
+}
+
+.app-guide-code-options {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+	background: $guide-graphic-color;
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		color: white;
+		padding: 2px 3px;
+	}
+}
+
+.app-guide-example-box {
+	list-style: none;
+}
+
+.app-guide-swatches {
+	@include clearfix();
+}
+
+.app-guide-swatch {
+	display: block;
+	border-width: 16px;
+	border-style: solid;
+	border-color: #e3e3e3;
+	margin: 0 auto;
+	width: $guide-swatch-size;
+	height: $guide-swatch-size;
+}
+
+.app-guide-icons {
+	ul {
+		margin-left: 0;
+		padding-left: 40px;
+	}
+	li {
+		display: inline-block;
+		margin-right: 4px;
+	}
+}
+
+//colors
+
+[title="yellow"] .app-guide-swatch {
+	background-color: $yellow;
+}
+
+[title="black"] .app-guide-swatch {
+	background-color: $black;
+}
+
+[title="dark-grey"] .app-guide-swatch {
+	background-color: $dark-grey;
+}
+
+[title="medium-grey"] .app-guide-swatch {
+	background-color: $medium-grey;
+}
+
+[title="light-grey"] .app-guide-swatch {
+	background-color: $light-grey;
+}
+
+[title="white"] .app-guide-swatch {
+	background-color: $white;
+}
+
+.app-guide-swatches li {
+	float: left;
+	width: 120px;
+	list-style: none;
+}
+
+.app-guide-info {
+	display: block;
+	text-align: center;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	font-size: 0.9em;
+}
+
+// icons
+
+.social-media-links {
+	@include clearfix;
+
+	li {
+		float: left;
+		margin-right: 12px;
+	}
+}
+
+// guide grid
+
+.app-guide-main {
+	position: relative;
+	display: block;
+}
+
+// guide resize iframe
+
+iframe {
+	transition: all .5s ease-in;
+}
+
+.resize-buttons {
+	display: block;
+}
+
+// styling specific elements for the styleguide
+
+.ui-link-background {
+	background-color: #5f92cd;
+}
+
+// toggle menu button
+.app-guide-toggle-menu {
+	position: absolute;
+	right: 10px;
+}
+
+.app-guide-footer {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	clear: both;
+	background-color: $black;
+	text-align: center;
+	font-size: 1.6em;
+	color: $white;
+	a {
+		color: $yellow;
+		&:hover,
+		&:focus {
+			color: $medium-grey;
+		}
+	}
+}

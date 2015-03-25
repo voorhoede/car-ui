@@ -1,0 +1,17 @@
+<!-- summary -->
+<div class="summary" data-component="summary">
+	<section class="max-width-centered">
+		<h1>THE TEST</h1>
+		<div class="summary-content">
+			<div class="summary-text">
+				<h2>{{ item.summary_title }}</h2>
+				{% if item.summary_inline_visual %}
+				<img class="inline-visual" src="{{ item.summary_inline_visual|imageSize(500,500) }}" alt="{{ item.summary_title }}" />
+				{% endif %}
+				{{ item.summary_text|safe }}
+			</div>
+			<img src="{{ item.summary_visual|imageSize(900,200) }}" alt="{{ item.summary_title }}"/>
+		</div>
+	</section>
+</div>
+<!-- /summary -->

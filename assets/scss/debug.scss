@@ -1,0 +1,25 @@
+/**
+ * Debug styles, only include during development
+ */
+
+$debug-color: black;
+
+.debug-component {
+	position: relative;
+	outline: 2px solid $debug-color;
+	outline-offset: -2px;
+	.debug-label {
+		display: block;
+	}
+}
+.debug-label {
+	display: none;
+	position: absolute;
+	font-size: 16px;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	color: white !important;
+	padding: .2em .5em;
+	background: $debug-color;
+}

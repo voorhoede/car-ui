@@ -1,0 +1,36 @@
+<!-- intro -->
+{% macro detailIntro(item) %}
+{% import "components/widget-score/_widget-score.html" as widgetScore %}
+<div class="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}">
+	<img itemprop="image" class="intro-background" src="{{ item.background_image|imageSize(960,500) }}" alt="{{ item.background_image_alt_text }}" />
+	<section class="intro-content max-width-centered" data-intro-section>
+		<article class="intro-text" data-intro-text>
+			<header>
+				{% if item.widget_score %}
+				<img class="intro-title-image" src="{{ item.title_image|imageSize(100,50) }}" alt="{{ item.title_image_alt_text }}" />
+				{% endif %}
+				<h1 itemprop="name">
+					{{ item.title }}
+					<span class="subtitle">{{ item.sub_title }}</span>
+				</h1>
+			</header>
+			{% if item.inline_visual %}
+			<img class="inline-visual" src="{{ item.inline_visual|imageSize(500,500) }}" alt="{{ item.title }}" />
+			{% endif %}
+			<p itemprop="description">
+				{{ item.description|safe }}
+			</p>
+		</article>{% if item.widget_score %}<!--
+		--><div class="widget-score-block">
+			{{ widgetScore.widgetScore(item) }}
+		</div><!--
+		--><aside class="social-buttons" data-social-buttons>
+			<p>Share this test on</p>
+			<a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]={{ item.url | url_encode }}&amp;p[title]=Car%20UI%20-%20{{ item.title }}%20{{ item.sub_title }}&amp;p[summary]={{ item.description | url_encode }}" class="social-button icon-facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=600');return false;">Facebook</a>
+			<a target="_blank" href="http://twitter.com/share?text=Car UI - Review: {{ item.twitter | url_encode }}&amp;url={{ item.url | url_encode }}" class="social-button icon-twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=438,width=600');return false;">Twitter</a>
+			<a target="_blank" class="social-button icon-gplus" href="https://plus.google.com/share?url={{ item.url }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google Plus</a>
+		</aside>{% endif %}
+	</section>
+</div>
+<!-- /intro -->
+{% endmacro %}

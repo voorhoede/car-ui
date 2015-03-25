@@ -1,0 +1,16 @@
+<!-- related -->
+<div class="related" data-component="related">
+	<section class="max-width-centered">
+		<h1>RELATED TESTS</h1>
+		{% for review in cms.about.related_review %}<!--
+		--><a class="related-product" href="{{ review.url }}">
+			<img src="{{ review.related_visual|imageSize(280,200) }}" alt="{{ review.title  + ' - ' + review.sub_title }}" />
+			<div class="related-title" data-equal-height>
+				<h2>{{ review.title }}<span>{{ review.sub_title }}</span></h2>
+				<span class="related-score">{{ review.score }}</span>
+			</div>
+		</a><!--
+		-->{% endfor %}
+	</section>
+</div>
+<!-- /related -->

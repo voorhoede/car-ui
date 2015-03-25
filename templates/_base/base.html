@@ -1,0 +1,89 @@
+{# Grab the title and description from the CMS general settings. #}
+{% set site_title = getSetting('site_name')%}
+{% set site_description = getSetting('site_description')%}
+
+<!DOCTYPE html>
+  <html class="no-js">
+  <head>
+    <title>
+      {% block title %}{{ site_title|default('Webhook site') }}{% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <meta name="description" content="{% block description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" type="image/ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicons/apple-touch-icon-57x57.jpg">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114.jpg">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72.jpg">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-touch-icon-144x144.jpg">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicons/apple-touch-icon-60x60.jpg">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicons/apple-touch-icon-120x120.jpg">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicons/apple-touch-icon-76x76.jpg">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-touch-icon-152x152.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-touch-icon-180x180.jpg">
+    <link rel="icon" type="image/png" href="/static/images/favicons/favicon-192x192.jpg" sizes="192x192">
+    <link rel="icon" type="image/png" href="/static/images/favicons/favicon-160x160.jpg" sizes="160x160">
+    <link rel="icon" type="image/png" href="/static/images/favicons/favicon-96x96.jpg" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/images/favicons/favicon-16x16.jpg" sizes="16x16">
+    <link rel="icon" type="image/png" href="/static/images/favicons/favicon-32x32.jpg" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/static/images/favicons/mstile-144x144.jpg">
+
+    {# Put your CSS in here and we'll minify it into one file. No CDN scripts. More info: #}
+    {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
+
+    <!-- build:css /static/css/minified.css -->
+    <link rel="stylesheet" href="/static/css/main.css"/>
+    <!-- endbuild -->
+
+    {# Useful block for loading outside scripts in other pages. #}
+    {% block head_extra %}
+    <script>(function(e){e.className = e.className.replace('no-js','js');}(document.documentElement));</script>
+
+    <script>/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};grunticon(["/static/images/grunticon-output/icons.data.svg.css", "/static/images/grunticon-output/icons.data.jpg.css", "/static/images/grunticon-output/icons.fallback.css"]);
+    </script>
+    <noscript>
+      <link rel="stylesheet" href="/static/images/grunticon-output/icons.fallback.css" />
+    </noscript>
+    {% endblock %}
+    
+  </head>
+  <body {% block body_attributes %}{% endblock %}>
+    {% block body %}
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      {% block header %}
+        {% include "components/header/header.html" %}
+      {% endblock %}
+
+      {# By default, your inner pages will load into this block. #}
+      {% block content %}{% endblock %}
+
+      {% block footer %}
+        {% include "components/footer/footer.html" %}
+      {% endblock %}
+
+      {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
+      {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
+
+      <!-- build:js /static/javascript/minified.js -->
+      <script src="/static/javascript/main.js"></script>
+      <!-- endbuild -->
+
+      {% block scripts_extra %}{% endblock %}
+
+      {# Google Analytics code. Feel free to remove. #}
+      <script>
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      </script>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,122 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+/* header component */
+
+//navigation specific breakpoints
+$nav-break-extra-small: 590px;
+
+.header {
+	position: relative;
+	height: 60px;
+	@include min-screen($nav-break-extra-small) {
+		height: 80px;
+	}
+
+	.header-content {
+		width: 100%;
+		max-width: 1200px;
+		margin-right: auto;
+		margin-left: auto;
+		background-color: $black;
+	}
+	.logo-area, nav {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.logo-area {
+		position: relative;
+		height: 60px;
+		width: 76px;
+		background-color: $yellow;
+		@include min-screen($nav-break-extra-small) {
+			width: 95px;
+			height: 80px;
+		}
+		@include min-screen($break-large) {
+			width: 19%;
+			min-width: 95px;
+		}
+	}
+	.logo {
+		@include hide-text();
+		border: none;
+		display: block;
+		position: absolute;
+		height: 30px;
+		width: 40px;
+		top: 15px;
+		right: 18px;
+		@include min-screen($nav-break-extra-small) {
+			height: 40px;
+			width: 55px;
+			top: 20px;
+			right: 20px;
+		}
+	}
+	nav {
+		ul {
+			margin-bottom: 0;
+			margin-top: 22px;
+			margin-left: -8px;
+			padding-left: 0;
+			@include min-screen($nav-break-extra-small) {
+				margin-top: 25px;
+				margin-left: -15px;
+			}
+			@include min-screen($break-medium) {
+				margin-top: 29px;
+			}
+		}
+		li {
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 26px;
+			list-style: none;
+			@include min-screen($nav-break-extra-small) {
+				margin-left: 45px;
+			}
+		}
+		a {
+			@include header-font();
+
+			font-size: 16px;
+			line-height: 1.2;
+			color: $white;
+			&:hover,
+			&:focus {
+				color: $yellow;
+			}
+			@include min-screen($nav-break-extra-small) {
+				font-size: 25px;
+			}
+		}
+	}
+	.active-nav-item {
+		border-bottom: 4px solid $yellow;
+		a {
+			color: $yellow;
+		}
+	}
+	.nav-text-large {
+		display: none;
+		@include min-screen($nav-break-extra-small) {
+			display: inline;
+		}
+	}
+	.header-background-left, .header-background-right {
+		position: absolute;
+		top: 0;
+		z-index: -1;
+		width: 50%;
+		height: 100%;
+	}
+	.header-background-left {
+		left: 0;
+		background-color: $yellow;
+	}
+	.header-background-right {
+		right: 0;
+		background-color: $black;
+	}
+}

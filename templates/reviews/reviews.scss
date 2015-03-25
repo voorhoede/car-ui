@@ -1,0 +1,25 @@
+@import "assets/scss/variables";
+@import "assets/scss/helpers";
+
+/* REVIEWS VIEW */
+.view-reviews {
+	padding-bottom: 60px;
+	background-color: $light-grey;
+
+	h1 {
+		padding-top: 40px;
+	}
+
+	// Exceptions for shortlist on reviews view page
+	.shortlist {
+		.shortlist-product {
+			display: inline-block;
+			margin-left: 0;
+			margin-right: 2%;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,53 @@
+// Add typography styles here
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	text-rendering: optimizelegibility;
+	-moz-font-feature-settings: "liga=1, dlig=1";
+	-ms-font-feature-settings: "liga", "dlig";
+	-webkit-font-feature-settings: "liga", "dlig";
+	-o-font-feature-settings: "liga", "dlig";
+	font-feature-settings: "liga", "dlig";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+	@include header-font();
+
+	font-size: 36px;
+	line-height: 1.1;
+	margin: 0;
+	padding-bottom: 20px;
+}
+h2 {
+	@include normal-font();
+
+	font-size: 25px;
+	line-height: 1.1;
+}
+h3 {
+	@include normal-font();
+
+	font-size: 20px;
+	line-height: 1.1;
+}
+p {
+	@include normal-font();
+
+	font-size: 1.6em;
+	line-height: 1.6;
+}
+ol, ul {
+	font-size: 1.6em;
+}
+
+blockquote {
+	@include header-font();
+
+	font-size: 3.6em;
+}

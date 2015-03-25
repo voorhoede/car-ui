@@ -1,0 +1,25 @@
+{% extends "templates/_base/base.html" %}
+{% import "components/shortlist/_shortlist.html" as shortlist %}
+{% import "components/featured/_featured.html" as featured %}
+
+{% block content %}
+<div class="home-intro" data-component="home-intro">
+  <img class="home-intro-background" src="{{ cms.home.intro_background_image|imageSize(960,300) }}" alt="{{ cms.home.intro_background_image_alt_text }}" />
+  <section class="home-intro-content">
+    <h1 itemprop="name">
+      {{ cms.home.name }}
+    </h1>
+    <p itemprop="description">
+      {{ cms.home.description }}
+    </p>
+    <a href="{{ cms.home.preview }}" class="about-button ui-button-secondary">More about Car UI</a>
+  </section>
+  <div class="triangle"></div>
+</div>
+<!-- home-main -->
+<main class="home-main" data-component="home-main">
+  {{ featured.featured(cms.home.featured_title, cms.home.featured_review) }}
+  {{ shortlist.list(cms.home.shortlist_title, cms.home.shortlist_review) }}
+</main>
+<!-- /home-main -->
+{% endblock %}

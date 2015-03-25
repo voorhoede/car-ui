@@ -1,0 +1,14 @@
+<!-- highlight -->
+<div class="highlight" data-component="highlight">
+	<section class="max-width-centered">
+		<h1>REMARKABLE</h1>
+		<div class="highlight-content">
+			<img src="{{ item.pathToUploads }}{{ item.highlight_image|imageSize(900,470) }}" alt="{{ item.highlight_title }}"/>
+			<div class="highlight-text">
+				<h2>{{ item.highlight_title }}</h2>
+				<p>{{ item.highlight_text|safe }}</p>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- /highlight -->

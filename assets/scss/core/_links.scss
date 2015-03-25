@@ -1,0 +1,16 @@
+a,
+.ui-link {
+	border-bottom: 1px solid $black;
+	color: $black;
+	text-decoration: none;
+
+	@include transition(color .2s ease-out, border-bottom .2s ease-out);
+
+	&:hover,
+	&:focus {
+		border-bottom-color: transparent;
+		color: $yellow;
+
+		@include transition(color .2s ease-out, border-bottom-color .2s ease-out);
+	}
+}
