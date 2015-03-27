@@ -85,11 +85,12 @@ module.exports = function(grunt) {
       },
       js: {
         files: [
-          'source/scripts/**/*.js',
+          'assets/scripts/helpers/*.js',
+          'assets/scripts/*.js',
           'components/**/*.js'
         ],
         tasks: [
-          'concat'
+          'concat', 'build'
         ]
       }
     },

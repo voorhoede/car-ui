@@ -15,7 +15,7 @@
             <li>
                 <a href="{{ url(review) }}">{{ review.title }}</a>
                 <a class="app-guide-icon app-guide-icon-tags" href=
-                "modules/views/about/about.html?debug"></a>
+                "{{ url(review) }}?debug"></a>
             </li>
             {% endfor %}
         </ul>
