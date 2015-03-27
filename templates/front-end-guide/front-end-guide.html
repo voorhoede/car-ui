@@ -11,77 +11,13 @@
         components.</p>
 
         <ul>
+            {% for review in cms.reviews %}
             <li>
-                <a href="modules/views/about/about.html">About</a>
+                <a href="{{ url(review) }}">{{ review.title }}</a>
                 <a class="app-guide-icon app-guide-icon-tags" href=
                 "modules/views/about/about.html?debug"></a>
             </li>
-            <li>
-                <a href=
-                "modules/views/audi-a3-etron/audi-a3-etron.html">Audi a3
-                etron</a> <a class="app-guide-icon app-guide-icon-tags"
-                href=
-                "modules/views/audi-a3-etron/audi-a3-etron.html?debug"></a>
-            </li>
-            <li>
-                <a href="modules/views/audi-a3-nl/audi-a3-nl.html">Audi a3
-                nl</a> <a class="app-guide-icon app-guide-icon-tags" href=
-                "modules/views/audi-a3-nl/audi-a3-nl.html?debug"></a>
-            </li>
-            <li>
-                <a href="modules/views/bmw-i3-nl/bmw-i3-nl.html">Bmw i3
-                nl</a> <a class="app-guide-icon app-guide-icon-tags" href=
-                "modules/views/bmw-i3-nl/bmw-i3-nl.html?debug"></a>
-            </li>
-            <li>
-                <a href=
-                "modules/views/citroen-c4-picasso-business-nl/citroen-c4-picasso-business-nl.html">
-                Citroen c4 picasso business nl</a> <a class=
-                "app-guide-icon app-guide-icon-tags" href=
-                "modules/views/citroen-c4-picasso-business-nl/citroen-c4-picasso-business-nl.html?debug">
-                </a>
-            </li>
-            <li>
-                <a href="modules/views/home/home.html">Home</a> <a class=
-                "app-guide-icon app-guide-icon-tags" href=
-                "modules/views/home/home.html?debug"></a>
-            </li>
-            <li>
-                <a href=
-                "modules/views/mercedes-c2-2-nl/mercedes-c2-2-nl.html">Mercedes
-                c2 2 nl</a> <a class="app-guide-icon app-guide-icon-tags"
-                href=
-                "modules/views/mercedes-c2-2-nl/mercedes-c2-2-nl.html?debug">
-                </a>
-            </li>
-            <li>
-                <a href=
-                "modules/views/nissan-qashqai-tekna-1-5-dci-nl/nissan-qashqai-tekna-1-5-dci-nl.html">
-                Nissan qashqai tekna 1 5 dci nl</a> <a class=
-                "app-guide-icon app-guide-icon-tags" href=
-                "modules/views/nissan-qashqai-tekna-1-5-dci-nl/nissan-qashqai-tekna-1-5-dci-nl.html?debug">
-                </a>
-            </li>
-            <li>
-                <a href=
-                "modules/views/opel-insignia-tourer-bplus-2-0-d-nl/opel-insignia-tourer-bplus-2-0-d-nl.html">
-                Opel insignia tourer bplus 2 0 d nl</a> <a class=
-                "app-guide-icon app-guide-icon-tags" href=
-                "modules/views/opel-insignia-tourer-bplus-2-0-d-nl/opel-insignia-tourer-bplus-2-0-d-nl.html?debug">
-                </a>
-            </li>
-            <li>
-                <a href="modules/views/reviews/reviews.html">Reviews</a>
-                <a class="app-guide-icon app-guide-icon-tags" href=
-                "modules/views/reviews/reviews.html?debug"></a>
-            </li>
-            <li>
-                <a href=
-                "modules/views/skoda-octavia/skoda-octavia.html">Skoda
-                octavia</a> <a class="app-guide-icon app-guide-icon-tags"
-                href=
-                "modules/views/skoda-octavia/skoda-octavia.html?debug"></a>
-            </li>
+            {% endfor %}
         </ul>
     </section>
 
