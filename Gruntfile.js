@@ -59,7 +59,7 @@ module.exports = function(grunt) {
     },
     concat: {
       basic: {
-        src: ['assets/scripts/**/*.js', 'components/**/*.js', 'templates/**/*.js'],
+        src: ['assets/scripts/helpers/*.js', 'assets/scripts/*.js', 'components/**/*.js', 'templates/**/*.js'],
         dest: 'static/javascript/main.js'
       }
     }
