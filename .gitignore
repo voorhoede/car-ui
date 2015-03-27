@@ -17,3 +17,8 @@ node_modules
 
 /.build
 /.firebase.conf
+
+# project meta
+.idea
+
+.sass-chache/*
