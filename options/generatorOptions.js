@@ -42,7 +42,7 @@ module.exports = function(grunt) {
           hostname: '*',
           base: '.build',
           livereload: livereloadPort,
-          middleware: function(connect, options, middlewares) {
+          middleware: function(configureProxies, options, middlewares) {
             // Return array of whatever middlewares you want
             middlewares.unshift(header({ 'X-Webhook-Local' : true }));
             middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);

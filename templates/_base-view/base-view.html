@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<title>
+		{% block title %}
+		{{ name | capitalize }} | {{ project.title }}
+		{% endblock %}
+	</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<meta name="description" content="Car UI" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="shortcut icon" href="{{ pathToAssets }}images/favicons/favicon.ico" type="image/ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="{{ pathToAssets }}images/favicons/apple-touch-icon-57x57.jpg">
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ pathToAssets }}images/favicons/apple-touch-icon-114x114.jpg">
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ pathToAssets }}images/favicons/apple-touch-icon-72x72.jpg">
+	<link rel="apple-touch-icon" sizes="144x144" href="{{ pathToAssets }}images/favicons/apple-touch-icon-144x144.jpg">
+	<link rel="apple-touch-icon" sizes="60x60" href="{{ pathToAssets }}images/favicons/apple-touch-icon-60x60.jpg">
+	<link rel="apple-touch-icon" sizes="120x120" href="{{ pathToAssets }}images/favicons/apple-touch-icon-120x120.jpg">
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ pathToAssets }}images/favicons/apple-touch-icon-76x76.jpg">
+	<link rel="apple-touch-icon" sizes="152x152" href="{{ pathToAssets }}images/favicons/apple-touch-icon-152x152.jpg">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ pathToAssets }}images/favicons/apple-touch-icon-180x180.jpg">
+	<link rel="icon" type="image/png" href="{{ pathToAssets }}images/favicons/favicon-192x192.jpg" sizes="192x192">
+	<link rel="icon" type="image/png" href="{{ pathToAssets }}images/favicons/favicon-160x160.jpg" sizes="160x160">
+	<link rel="icon" type="image/png" href="{{ pathToAssets }}images/favicons/favicon-96x96.jpg" sizes="96x96">
+	<link rel="icon" type="image/png" href="{{ pathToAssets }}images/favicons/favicon-16x16.jpg" sizes="16x16">
+	<link rel="icon" type="image/png" href="{{ pathToAssets }}images/favicons/favicon-32x32.jpg" sizes="32x32">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="{{ pathToAssets }}images/favicons/mstile-144x144.jpg">
+
+	<script>(function(e){e.className = e.className.replace('no-js','js');}(document.documentElement));</script>
+	
+	<script>/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};grunticon(["{{ pathToAssets }}images/grunticon-output/icons.data.svg.css", "{{ pathToAssets }}images/grunticon-output/icons.data.jpg.css", "{{ pathToAssets }}images/grunticon-output/icons.fallback.css"]);</script>
+	<noscript>
+		<link rel="stylesheet" href="{{ pathToAssets }}images/grunticon-output/icons.fallback.css" />
+	</noscript>
+	
+	{% block styles %}
+	<link rel="stylesheet" href="{{ pathToAssets }}style/main.css" />
+	{% endblock %}
+</head>
+<body>
+	<!-- use data attributes to target in JS -->
+	<div id="page">
+		{% block header %}
+			{% import "components/header/_header.html" as header %}
+			{{ header.header(navigation) }}
+		{% endblock %}
+
+		{% block content %}
+		Include content here
+		{% endblock %}
+
+		{% block footer %}
+			{% include "components/footer/_footer.html" %}
+		{% endblock %}
+	</div>
+
+	{% if (mode == 'development') %}
+	<!--<script src="//localhost:35729/livereload.js"></script>-->
+	{% endif %}
+
+	{% block scripts %}
+	<script src="{{ pathToAssets + 'scripts/main.js' }}"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-56616974-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	{% endblock %}
+
+</body>
+</html>

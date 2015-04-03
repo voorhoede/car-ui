@@ -1,0 +1,155 @@
+{% extends "_guide/guide.html" %}
+{% import  "_guide/guide.html" as guide %}
+
+{% block title %}
+{{ name | replace("-"," ") | capitalize }} (preview) {{ super() }}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ pathToAssets + 'css/prism.css' }}">
+<link rel="stylesheet" href="{{ pathToAssets + 'css/main.css' }}">
+{% if code.css %}
+{# <link rel="stylesheet" href="{{ '_' + name + '.css' }}"> #}
+{% endif %}
+{% endblock %}
+
+{% block maincontent %}
+
+<main class="app-guide-main">
+	<script>window.testApp = {}; // namespace to register modules for testing</script>
+	<h1 class="section-title app-guide-content">{{ name | replace("-"," ") | capitalize }}</h1>
+	<div class="app-guide-content app-guide-markdown language-markdown">
+		{{ code.readme }}
+	</div>
+
+	<section id="section-preview" class="app-guide-section">
+		<a class="app-guide-icon app-guide-icon-list app-guide-back"
+		   href="/" title="back to overview"></a>
+		<h2 class="app-guide-section-title">
+			Preview {{ guide.linkSection('preview') }}
+		</h2>
+		<div class="app-guide-preview-top">
+			<div class="app-guide-crop-mark"></div>
+		</div>
+		<div class="app-guide-preview">
+			{{ code.html }}
+		</div>
+		<div class="app-guide-preview-bottom">
+			<div class="app-guide-crop-mark"></div>
+		</div>
+	</section>
+
+	<section id="section-code" class="app-guide-section app-guide-content">
+		<h2 class="app-guide-section-title">
+			Code {{ guide.linkSection('code') }}
+		</h2>
+		{# source code with syntax highlight using prismjs: http://prismjs.com/ #}
+
+		{% if code.html %}
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML {{ guide.linkSection('code-html') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>{{ code.html | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.html" download="_{{name}}.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
+		{% if code.css %}
+		<section id="section-code-css">
+			<h3 class="app-guide-section-title">
+				CSS {{ guide.linkSection('code-css') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-css"><code>{{ code.css | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.css" title="view source CSS"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.css" download="_{{name}}.css" title="download CSS"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
+		{% if code.js %}
+		<section id="section-code-javascript">
+			<h3 class="app-guide-section-title">
+				JS {{ guide.linkSection('code-js') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-javascript"><code>{{ code.js | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.js" title="view source JavaScript"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.js" download="_{{name}}.js" title="download JavaScript"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
+	</section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/static/javascript/prism.js"></script>
+
+{% if (mode == 'distribution') %}
+<script>
+
+	(function(){
+		var iframe = document.getElementById('preview-iframe'),
+			widthInput = document.getElementById('resize-width');
+
+		iframe.addEventListener('load', function(){
+			widthInput.value = parseInt(window.getComputedStyle(iframe).width);
+			iframe.height = iframe.contentWindow.document.body.clientHeight + 10;
+		}, false);
+
+		window.onresize = function () {
+			widthInput.value = parseInt(window.getComputedStyle(iframe).width);
+		};
+
+		document.getElementById('desktop').addEventListener("click", function () {
+			iframe.width = "1224px";
+		}, false);
+
+		document.getElementById('phone').addEventListener("click", function () {
+			iframe.width = "320px";
+		}, false);
+
+		document.getElementById('tablet').addEventListener("click", function () {
+			iframe.width = "1024px";
+		}, false);
+
+		iframe.addEventListener('transitionend', function () {
+			iframe.height = iframe.contentWindow.document.body.clientHeight + 10;
+			widthInput.value = parseInt(window.getComputedStyle(iframe).width);
+		}, false);
+
+		document.getElementById('resize-form').addEventListener('submit', function (event) {
+			event.preventDefault();
+			iframe.width = widthInput.value + 'px';
+		}, false);
+
+	}());
+
+</script>
+{% endif %}
+
+{% if (mode == 'distribution') %}
+{% if hasTest %}
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine.js"></script>
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine-html.js"></script>
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/boot-mod.js"></script>
+<script src="{{ '_' + name + '.test.js' }}"></script>
+{% endif %}
+{% endif %}
+
+
+{% endblock %}

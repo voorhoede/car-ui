@@ -1,3 +1,144 @@
+var helpers = helpers || {};
+
+/**
+ * Debounce function - http://remysharp.com/2010/07/21/throttling-function-calls/
+ *
+ * @param fn
+ * @param delay
+ * @returns {Function}
+ */
+function debounce(fn, delay) {
+	var timer = null;
+	return function () {
+		var context = this, args = arguments;
+		clearTimeout(timer);
+		timer = setTimeout(function () {
+			fn.apply(context, args);
+		}, delay);
+	};
+}
+helpers.debounce = debounce;
+/**
+ * Collection of global helpers
+ * @type {object} helpers
+ */
+var helpers = helpers || {};
+
+(function(){
+	'use strict';
+
+	/**
+	 * Collection of DOM helpers
+	 * @type {object} helpers.dom
+	 */
+	helpers.dom = helpers.dom || {};
+
+	/**
+	 * containsClass
+	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
+	 * @param {HTMLElement} element
+	 * @param {String} className
+	 */
+	function containsClass (element, className) {
+		if (document.documentElement.classList) {
+			return element.classList.contains(className);
+		} else {
+			var re = new RegExp('(^|\\s)' + className + '(\\s|$)');
+			return element.className.match(re);
+		}
+	}
+	helpers.dom.containsClass = containsClass;
+
+	/**
+	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
+	 * @param {HtmlElement} element
+	 * @param {String} className
+	 */
+	function addClass (element, className) {
+		if (document.documentElement.classList) {
+			element.classList.add(className);
+		} else {
+			if (!containsClass(element, className)) {
+				element.className += (element.className ? ' ' : '') + className;
+			}
+		}
+	}
+	helpers.dom.addClass = addClass;
+
+	/**
+	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
+	 * @param {HtmlElement} element
+	 * @param {String} className
+	 */
+	function removeClass (element, className) {
+		if (document.documentElement.classList) {
+			element.classList.remove(className);
+		} else {
+			var regexp = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+			element.className = element.className.replace(regexp, '$2');
+		}
+	}
+	helpers.dom.removeClass = removeClass;
+
+	/**
+	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
+	 * @param {HtmlElement} element
+	 * @param {String} className
+	 */
+	function toggleClass (element, className){
+		if (document.documentElement.classList) {
+			return element.classList.toggle(className);
+		} else {
+			if (containsClass(element, className))
+			{
+				removeClass(element, className);
+				return false;
+			} else {
+				addClass(element, className);
+				return true;
+			}
+		}
+	}
+	helpers.dom.toggleClass = toggleClass;
+
+}());
+var helpers = helpers || {};
+
+(function(d, w){
+	'use strict';
+
+	function setBreakSize() {
+		// Set breakSize globally - Removing doubles quotes added by IE
+		helpers.breakSize = w.getComputedStyle(d.body, ':after').getPropertyValue('content').replace(/"/g, '');
+	}
+	setBreakSize();
+
+	w.addEventListener('resize', debounce(setBreakSize, 250), false);
+}(document, window));
+(function(){
+	'use strict';
+
+	var components = document.querySelectorAll('[data-component]');
+
+	if(window.location.href.indexOf('debug') > 0){ 
+		toggleDebug(); 
+	}
+	window.debug = toggleDebug;
+
+	function toggleDebug() {
+		[].forEach.call([].slice.call(components), function(component){
+			helpers.dom.toggleClass(component, 'debug-component');
+		});
+		[].forEach.call([].slice.call(components), function(component){
+			var name = component.getAttribute('data-component');
+			var label = document.createElement('a');
+			label.innerHTML = name;
+			label.href = '/modules/components/' + name + '/preview.html';
+			helpers.dom.addClass(label, 'debug-label');
+			component.appendChild(label);
+		});
+	}
+}());
 (function(d, w) {
 	'use strict';
 
@@ -391,123 +532,6 @@
 	window.Expandible = Expandible;
 
 })();
-var helpers = helpers || {};
-
-/**
- * Debounce function - http://remysharp.com/2010/07/21/throttling-function-calls/
- *
- * @param fn
- * @param delay
- * @returns {Function}
- */
-function debounce(fn, delay) {
-	var timer = null;
-	return function () {
-		var context = this, args = arguments;
-		clearTimeout(timer);
-		timer = setTimeout(function () {
-			fn.apply(context, args);
-		}, delay);
-	};
-}
-helpers.debounce = debounce;
-/**
- * Collection of global helpers
- * @type {object} helpers
- */
-var helpers = helpers || {};
-
-(function(){
-	'use strict';
-
-	/**
-	 * Collection of DOM helpers
-	 * @type {object} helpers.dom
-	 */
-	helpers.dom = helpers.dom || {};
-
-	/**
-	 * containsClass
-	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
-	 * @param {HTMLElement} element
-	 * @param {String} className
-	 */
-	function containsClass (element, className) {
-		if (document.documentElement.classList) {
-			return element.classList.contains(className);
-		} else {
-			var re = new RegExp('(^|\\s)' + className + '(\\s|$)');
-			return element.className.match(re);
-		}
-	}
-	helpers.dom.containsClass = containsClass;
-
-	/**
-	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
-	 * @param {HtmlElement} element
-	 * @param {String} className
-	 */
-	function addClass (element, className) {
-		if (document.documentElement.classList) {
-			element.classList.add(className);
-		} else {
-			if (!containsClass(element, className)) {
-				element.className += (element.className ? ' ' : '') + className;
-			}
-		}
-	}
-	helpers.dom.addClass = addClass;
-
-	/**
-	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
-	 * @param {HtmlElement} element
-	 * @param {String} className
-	 */
-	function removeClass (element, className) {
-		if (document.documentElement.classList) {
-			element.classList.remove(className);
-		} else {
-			var regexp = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
-			element.className = element.className.replace(regexp, '$2');
-		}
-	}
-	helpers.dom.removeClass = removeClass;
-
-	/**
-	 * Borrowed from: http://hacks.mozilla.org/2010/01/classlist-in-firefox-3-6/
-	 * @param {HtmlElement} element
-	 * @param {String} className
-	 */
-	function toggleClass (element, className){
-		if (document.documentElement.classList) {
-			return element.classList.toggle(className);
-		} else {
-			if (containsClass(element, className))
-			{
-				removeClass(element, className);
-				return false;
-			} else {
-				addClass(element, className);
-				return true;
-			}
-		}
-	}
-	helpers.dom.toggleClass = toggleClass;
-
-}());
-var helpers = helpers || {};
-
-(function(d, w){
-	'use strict';
-
-	function setBreakSize() {
-		// Set breakSize globally - Removing doubles quotes added by IE
-		helpers.breakSize = w.getComputedStyle(d.body, ':after').getPropertyValue('content').replace(/"/g, '');
-	}
-	setBreakSize();
-
-	w.addEventListener('resize', debounce(setBreakSize, 250), false);
-}(document, window));
 (function(d, w){
 	'use strict';
 

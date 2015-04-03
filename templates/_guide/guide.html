@@ -1,0 +1,42 @@
+{% extends "_base-view/base-view.html" %}
+
+{% macro linkSection(section) %}
+<a href="{{ '#section-' + section }}"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+{% endmacro %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ pathToAssets + 'style/main.css' }}">
+<!--<link rel="stylesheet" href="{{ pathToGuide }}/voorhoede-core-styles.css">-->
+<!--<link rel="stylesheet" href="{{ pathToGuide }}/core-layout.css">-->
+<link rel="stylesheet" href="{{ pathToGuide }}guide.css">
+{% endblock %}
+
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="page">
+	<div class="core-layout">
+		<header class="app-guide-content app-guide-header">
+			<img src="{{ pathToAssets }}images/grunticon-svgs/car-ux-logo.svg" alt="Car UX logo" class="app-guide-logo app-guide-logo-box-1"/>
+				<h1>{{ project.title }}</h1>
+				<h2 class="app-guide-subtitle">Front-end guide for {{ project.title}} by De Voorhoede</h2>
+		</header>
+
+		{% block maincontent %}
+
+		{% endblock %}
+
+	</div>
+
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<footer class="app-guide-footer">
+	This page is generated using <a href="http://voorhoede.nl">De Voorhoede</a>'s template builder
+</footer>
+{% endblock %}
