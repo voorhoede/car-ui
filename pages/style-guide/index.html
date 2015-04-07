@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<title>
+		
+		Front-end guide | 
+		
+	</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<meta name="description" content="Car UI" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="shortcut icon" href="/static/images/favicons/favicon.ico" type="image/ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicons/apple-touch-icon-57x57.jpg">
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114.jpg">
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72.jpg">
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-touch-icon-144x144.jpg">
+	<link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicons/apple-touch-icon-60x60.jpg">
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicons/apple-touch-icon-120x120.jpg">
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicons/apple-touch-icon-76x76.jpg">
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-touch-icon-152x152.jpg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-touch-icon-180x180.jpg">
+	<link rel="icon" type="image/png" href="/static/images/favicons/favicon-192x192.jpg" sizes="192x192">
+	<link rel="icon" type="image/png" href="/static/images/favicons/favicon-160x160.jpg" sizes="160x160">
+	<link rel="icon" type="image/png" href="/static/images/favicons/favicon-96x96.jpg" sizes="96x96">
+	<link rel="icon" type="image/png" href="/static/images/favicons/favicon-16x16.jpg" sizes="16x16">
+	<link rel="icon" type="image/png" href="/static/images/favicons/favicon-32x32.jpg" sizes="32x32">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="/static/images/favicons/mstile-144x144.jpg">
+
+	<script>(function(e){e.className = e.className.replace('no-js','js');}(document.documentElement));</script>
+	
+	<script>/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};grunticon(["/static/images/grunticon-output/icons.data.svg.css", "/static/images/grunticon-output/icons.data.jpg.css", "/static/images/grunticon-output/icons.fallback.css"]);</script>
+	<noscript>
+		<link rel="stylesheet" href="/static/images/grunticon-output/icons.fallback.css" />
+	</noscript>
+	<link rel="stylesheet" href="/static/css/main.css"/>
+	<link rel="stylesheet" href="/static/css/prism.css"/>
+</head>
+<body>
+	<!-- use data attributes to target in JS -->
+	<div id="page">
+		
+
+		
+<div class="page">
+	<div class="core-layout">
+		<header class="app-guide-content app-guide-header">
+			<img src="/static/images/grunticon-svgs/car-ux-logo.svg" alt="Car UX logo" class="app-guide-logo app-guide-logo-box-1"/>
+				<h1></h1>
+				<h2 class="app-guide-subtitle">Front-end guide for  by De Voorhoede</h2>
+		</header>
+
+		
+<div class="style-guide app-guide-content">
+<h1>Style Guide</h1>
+	<!--
+		LOGO:
+	-->
+	<section id="section-logo" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Logo 
+<a href="#section-logo"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+		</h2>
+		<ul class="app-guide-example-box">
+			<li class="app-guide-logo-box app-guide-logo-box-1">
+				<img src="/static/images/grunticon-svgs/car-ux-logo.svg" alt="Car UX logo" class="app-guide-logo"/>
+			</li>
+			<li class="app-guide-logo-box app-guide-logo-box-2">
+				<img src="/static/images/grunticon-svgs/car-ux-logo-white.svg" alt="Car UX logo 2" class="app-guide-logo"/>
+			</li>
+		</ul>
+	</section>
+	<!--
+		COLORS:
+	-->
+	<section id="section-colors" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Colors 
+<a href="#section-colors"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+		</h2>
+		<ul class="app-guide-example-box app-guide-swatches">
+			<li title="yellow">
+				<span class="app-guide-info">#ffc300</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$yellow</span>
+			</li>
+			<li title="black">
+				<span class="app-guide-info">#000000</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$black</span>
+			</li>
+			<li title="dark-grey">
+				<span class="app-guide-info">#7f7f7f</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$dark-grey</span>
+			</li>
+			<li title="medium-grey">
+				<span class="app-guide-info">#dcdcdc</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$medium-grey</span>
+			</li>
+			<li title="light-grey">
+				<span class="app-guide-info">#f2f2f2</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$light-grey</span>
+			</li>
+			<li title="white">
+				<span class="app-guide-info">#ffffff</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$white</span>
+			</li>
+		</ul>
+		<p>Note: Each color swatch has a hexadecimal color code (for designers) on top and an scss variable name (for developers) below.</p>
+	</section>
+	<!--
+		ICONS:
+	-->
+	<section id="section-icons" class="app-guide-section app-guide-icons">
+		<h2 class="app-guide-section-title">
+			Icons 
+<a href="#section-icons"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+		</h2>
+		<div class="app-guide-section-content">
+			<p>
+				Note: Icons are managed using Grunticon, preferring SVG icons and providing
+				a PNG fallback for browsers not supporting SVG.
+			</p>
+			<h3 class="app-guide-section-title">Social media icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-facebook"></span></li>
+				<li><span class="icon icon-twitter"></span></li>
+				<li><span class="icon icon-gplus"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">Gauge icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-gauge1"></span></li>
+				<li><span class="icon icon-gauge2"></span></li>
+				<li><span class="icon icon-gauge3"></span></li>
+				<li><span class="icon icon-gauge4"></span></li>
+				<li><span class="icon icon-gauge5"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">Plus/minus and arrow icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-plus"></span></li>
+				<li><span class="icon icon-min"></span></li>
+				<li><span class="icon icon-arrow-down"></span></li>
+				<li><span class="icon icon-arrow-up"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">UNITiD logo</h3>
+			<ul class="app-guide-example-box">
+				<li class="app-guide-logo-box app-guide-logo-box-2">
+					<img src="/static/images/grunticon-svgs/unitid-logo.svg" alt="UNITiD logo" class="app-guide-logo"/>
+				</li>
+			</ul>
+			<p>
+				Note: The icons can be included by giving a class name to a span, like:
+				<code class="language-markup">&lt;span class="icon icon-facebook"&gt;</code>. Icons
+				are available in different colors. They have a different class name for each color.
+				Check the folder assets/images/grunticon-svgs for available colors.
+			</p>
+		</div>
+	</section>
+	<!--
+		TYPOGRAPHY:
+	-->
+	<section id="section-typography" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Typography 
+<a href="#section-typography"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+		</h2>
+		<div class="app-guide-section-content">
+			<h3>Headings followed by text</h3>
+			<h1>Heading 1 - Helvetica Neue Bold - 36px - Lineheight: 1.1</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<h2>Heading 2 - Helvetica Neue - 25px - Lineheight: 1.1</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<h3>Heading 3 - Helvetica Neue - 20px - Lineheight: 1.1</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia.
+			</p>
+
+			<h3>Body text</h3>
+			<p>
+				Helvetica Neue - 16px - Lineheight: 1.6 - Lorem ipsum dolor sit amet, consectetur
+				adipisicing elit. Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+		</div>
+	</section>
+	<!--
+		LINKS:
+	-->
+	<section id="section-links" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Buttons and Links 
+<a href="#section-links"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+		</h2>
+		<div class="app-guide-section-content">
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Primary action - block level</h3>
+				<a href="#" class="ui-button-primary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Secondary action - block level</h3>
+				<a href="#" class="ui-button-secondary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Tertiary action - block level</h3>
+				<a href="#" class="ui-button-tertiary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Primary action - inline level</h3>
+				<a href="#" class="ui-link">Meer over Car UX</a>
+			</div>
+		</div>
+	</section>
+	
+
+
+	</div>
+
+</div>
+
+
+		
+<footer class="app-guide-footer">
+	This page is generated using <a href="http://voorhoede.nl">De Voorhoede</a>'s template builder
+</footer>
+
+	</div>
+
+	
+	<script src="/static/scripts/main.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-56616974-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	
+
+</body>
+</html>

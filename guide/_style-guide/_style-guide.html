@@ -1,0 +1,191 @@
+{% extends "_guide/guide.html" %}
+{% import  "_guide/guide.html" as guide %}
+
+{% block maincontent %}
+<div class="style-guide app-guide-content">
+<h1>Style Guide</h1>
+	<!--
+		LOGO:
+	-->
+	<section id="section-logo" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Logo {{ guide.linkSection('logo') }}
+		</h2>
+		<ul class="app-guide-example-box">
+			<li class="app-guide-logo-box app-guide-logo-box-1">
+				<img src="{{ pathToAssets }}images/grunticon-svgs/car-ux-logo.svg" alt="Car UX logo" class="app-guide-logo"/>
+			</li>
+			<li class="app-guide-logo-box app-guide-logo-box-2">
+				<img src="{{ pathToAssets }}images/grunticon-svgs/car-ux-logo-white.svg" alt="Car UX logo 2" class="app-guide-logo"/>
+			</li>
+		</ul>
+	</section>
+	<!--
+		COLORS:
+	-->
+	<section id="section-colors" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Colors {{ guide.linkSection('colors') }}
+		</h2>
+		<ul class="app-guide-example-box app-guide-swatches">
+			<li title="yellow">
+				<span class="app-guide-info">#ffc300</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$yellow</span>
+			</li>
+			<li title="black">
+				<span class="app-guide-info">#000000</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$black</span>
+			</li>
+			<li title="dark-grey">
+				<span class="app-guide-info">#7f7f7f</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$dark-grey</span>
+			</li>
+			<li title="medium-grey">
+				<span class="app-guide-info">#dcdcdc</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$medium-grey</span>
+			</li>
+			<li title="light-grey">
+				<span class="app-guide-info">#f2f2f2</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$light-grey</span>
+			</li>
+			<li title="white">
+				<span class="app-guide-info">#ffffff</span>
+				<span class="app-guide-swatch"></span>
+				<span class="app-guide-info">$white</span>
+			</li>
+		</ul>
+		<p>Note: Each color swatch has a hexadecimal color code (for designers) on top and an scss variable name (for developers) below.</p>
+	</section>
+	<!--
+		ICONS:
+	-->
+	<section id="section-icons" class="app-guide-section app-guide-icons">
+		<h2 class="app-guide-section-title">
+			Icons {{ guide.linkSection('icons') }}
+		</h2>
+		<div class="app-guide-section-content">
+			<p>
+				Note: Icons are managed using Grunticon, preferring SVG icons and providing
+				a PNG fallback for browsers not supporting SVG.
+			</p>
+			<h3 class="app-guide-section-title">Social media icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-facebook"></span></li>
+				<li><span class="icon icon-twitter"></span></li>
+				<li><span class="icon icon-gplus"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">Gauge icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-gauge1"></span></li>
+				<li><span class="icon icon-gauge2"></span></li>
+				<li><span class="icon icon-gauge3"></span></li>
+				<li><span class="icon icon-gauge4"></span></li>
+				<li><span class="icon icon-gauge5"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">Plus/minus and arrow icons</h3>
+			<ul class="app-guide-example-box">
+				<li><span class="icon icon-plus"></span></li>
+				<li><span class="icon icon-min"></span></li>
+				<li><span class="icon icon-arrow-down"></span></li>
+				<li><span class="icon icon-arrow-up"></span></li>
+			</ul>
+			<h3 class="app-guide-section-title">UNITiD logo</h3>
+			<ul class="app-guide-example-box">
+				<li class="app-guide-logo-box app-guide-logo-box-2">
+					<img src="{{ pathToAssets }}images/grunticon-svgs/unitid-logo.svg" alt="UNITiD logo" class="app-guide-logo"/>
+				</li>
+			</ul>
+			<p>
+				Note: The icons can be included by giving a class name to a span, like:
+				<code class="language-markup">&lt;span class="icon icon-facebook"&gt;</code>. Icons
+				are available in different colors. They have a different class name for each color.
+				Check the folder assets/images/grunticon-svgs for available colors.
+			</p>
+		</div>
+	</section>
+	<!--
+		TYPOGRAPHY:
+	-->
+	<section id="section-typography" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Typography {{ guide.linkSection('typography') }}
+		</h2>
+		<div class="app-guide-section-content">
+			<h3>Headings followed by text</h3>
+			<h1>Heading 1 - Helvetica Neue Bold - 36px - Lineheight: 1.1</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<h2>Heading 2 - Helvetica Neue - 25px - Lineheight: 1.1</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<h3>Heading 3 - Helvetica Neue - 20px - Lineheight: 1.1</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia.
+			</p>
+
+			<h3>Body text</h3>
+			<p>
+				Helvetica Neue - 16px - Lineheight: 1.6 - Lorem ipsum dolor sit amet, consectetur
+				adipisicing elit. Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cum cupiditate eius eveniet omnis pariatur quidem suscipit?
+				Dolore doloribus eos explicabo magni nemo officia quia,
+				quisquam repudiandae sapiente voluptatibus? Quidem, sed!
+			</p>
+		</div>
+	</section>
+	<!--
+		LINKS:
+	-->
+	<section id="section-links" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Buttons and Links {{ guide.linkSection('links') }}
+		</h2>
+		<div class="app-guide-section-content">
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Primary action - block level</h3>
+				<a href="#" class="ui-button-primary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Secondary action - block level</h3>
+				<a href="#" class="ui-button-secondary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Tertiary action - block level</h3>
+				<a href="#" class="ui-button-tertiary">Meer over Car UX</a>
+			</div>
+			<div class="app-guide-example">
+				<h3 class="app-guide-section-title">Primary action - inline level</h3>
+				<a href="#" class="ui-link">Meer over Car UX</a>
+			</div>
+		</div>
+	</section>
+	
+{% endblock %}
