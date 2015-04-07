@@ -37,10 +37,8 @@
 	<noscript>
 		<link rel="stylesheet" href="{{ pathToAssets }}images/grunticon-output/icons.fallback.css" />
 	</noscript>
-	
-	{% block styles %}
-	<link rel="stylesheet" href="{{ pathToAssets }}style/main.css" />
-	{% endblock %}
+	<link rel="stylesheet" href="/static/css/main.css"/>
+	<link rel="stylesheet" href="/static/css/prism.css"/>
 </head>
 <body>
 	<!-- use data attributes to target in JS -->
@@ -58,10 +56,6 @@
 			{% include "components/footer/_footer.html" %}
 		{% endblock %}
 	</div>
-
-	{% if (mode == 'development') %}
-	<!--<script src="//localhost:35729/livereload.js"></script>-->
-	{% endif %}
 
 	{% block scripts %}
 	<script src="{{ pathToAssets + 'scripts/main.js' }}"></script>

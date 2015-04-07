@@ -1,4 +1,4 @@
-{% extends "_base-view/base-view.html" %}
+{% extends "_guide-base-view/guide-base-view.html" %}
 
 {% macro linkSection(section) %}
 <a href="{{ '#section-' + section }}"
@@ -8,8 +8,6 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{{ pathToAssets + 'style/main.css' }}">
-<!--<link rel="stylesheet" href="{{ pathToGuide }}/voorhoede-core-styles.css">-->
-<!--<link rel="stylesheet" href="{{ pathToGuide }}/core-layout.css">-->
 <link rel="stylesheet" href="{{ pathToGuide }}guide.css">
 {% endblock %}
 
