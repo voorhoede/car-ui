@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 	'use strict';
 
 	var env = new nunjucks.Environment([
-        new nunjucks.FileSystemLoader('templates')
+        new nunjucks.FileSystemLoader('guide')
     ]);
     var componentsDirectory = 'components/';
 	var guideDirectory = 'front-end-guide/';
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 	    });
     }
 
-	var template = getTemplate('../templates/front-end-guide/front-end-guide.html');
+	var template = getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
 		'name': 'Front-end Guide',
 		// 'project': project,

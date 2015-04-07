@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 	'use strict';
 
 	var env = new nunjucks.Environment([
-        new nunjucks.FileSystemLoader('templates')
+        new nunjucks.FileSystemLoader('guide')
     ]);
 	var componentsDirectory = 'components/';
 	var pagesDirectory = 'pages/';
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
     }
 
 	var previewer = getTemplate(
-			'../templates/_component-previewer/component-previewer.html');
+			'../guide/_component-previewer/component-previewer.html');
 
 	function compilePreview (name) {
 
