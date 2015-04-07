@@ -65,7 +65,7 @@ module.exports = function (grunt) {
 				'readme': readme
 			}
 		})
-		file.write(pagesDirectory + name +  '/index.html', previewerHtml);
+		file.write(pagesDirectory + componentsDirectory + name +  '/index.html', previewerHtml);
 	}
 
 	getComponents().forEach(compilePreview);
