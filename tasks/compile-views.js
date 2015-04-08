@@ -6,10 +6,11 @@ var nunjucks 	= require('nunjucks');
 module.exports = function (grunt) {
 	'use strict';
 
+	// Loads templates from the 'guide' directory
 	var env = new nunjucks.Environment([
         new nunjucks.FileSystemLoader('guide')
     ]);
-	var viewsDirectory = 'templates/';
+	var templatesDirectory = 'templates/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
 
@@ -22,64 +23,41 @@ module.exports = function (grunt) {
     }
 
 	function getViews () {
-        return fs.readdirSync(viewsDirectory)
+		// returns an array of filenames excluding '.' and '..'.
+        return fs.readdirSync(templatesDirectory)
             .filter(isNotUnderscored)
             .filter(function(name){
-                return grunt.file.isDir(viewsDirectory + name);
+            	// join all arguments together and normalize the resulting path.
+                return grunt.file.isDir(templatesDirectory + name);
             });
     }
 
 	var previewer = getTemplate(
 			'../guide/_component-previewer/component-previewer-object.html');
 
-	function compilePreview (name) {
-
-		var webRoot = '../../../';
-
-		var htmlFilename = viewsDirectory + name + '/' + name + '.html';
-		var listHtmlFileName = viewsDirectory + name + '/' + 'list.html';
-		var individualHtmlFileName = viewsDirectory + name + '/' + 'individual.html';
-
-		var html = file.exists(htmlFilename) ? file.read(htmlFilename) : '';
-		var listHtml = file.exists(listHtmlFileName) ? file.read(listHtmlFileName) : '';
-		var individualHtml = file.exists(individualHtmlFileName) ? file.read(individualHtmlFileName) : '';
+	function compilePreview(name) {
+		var htmlFilename = templatesDirectory + name + '/' + name + '.html';
+		var listHtmlFileName = templatesDirectory + name + '/' + 'list.html';
+		var individualHtmlFileName = templatesDirectory + name + '/' + 'individual.html';
 
 		if(file.exists(listHtmlFileName)){
-			var previewerHtml = previewer.render({
-				'name': name,
-				'webRoot': webRoot,
-				'pathToAssets': '/static/',
-	            'views': getViews(),
-				'code': {
-					'html': listHtml
-				}
-			})
-			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
+			var html = file.read(listHtmlFileName);
 		}
 		if(file.exists(individualHtmlFileName)){
-			var previewerHtml = previewer.render({
-				'name': name,
-				'webRoot': webRoot,
-				'pathToAssets': '/static/',
-	            'views': getViews(),
-				'code': {
-					'html': individualHtml
-				}
-			})
-			file.write(pagesDirectory + 'views/' + 'individual-review/' + '/index.html', previewerHtml);
+			var html = file.read(individualHtmlFileName);
 		}
-		if(file.exists(htmlFilename)) {
-			var previewerHtml = previewer.render({
-				'name': name,
-				'webRoot': webRoot,
-				'pathToAssets': '/static/',
-	            'views': getViews(),
-				'code': {
-					'html': html
-				}
-			})
-			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
+		if(file.exists(htmlFilename)){
+			var html = file.read(htmlFilename);
 		}
+
+		var previewerHtml = previewer.render({
+			'name': name,
+			'pathToAssets': '/static/',
+            'views': getViews(),
+			'code': {
+				'html': html
+			}
+		})
 	}
 
 	getViews().forEach(compilePreview);
