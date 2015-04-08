@@ -38,9 +38,11 @@ module.exports = function (grunt) {
 
 		var htmlFilename = viewsDirectory + name + '/' + name + '.html';
 		var listHtmlFileName = viewsDirectory + name + '/' + 'list.html';
+		var individualHtmlFileName = viewsDirectory + name + '/' + 'individual.html';
 
 		var html = file.exists(htmlFilename) ? file.read(htmlFilename) : '';
 		var listHtml = file.exists(listHtmlFileName) ? file.read(listHtmlFileName) : '';
+		var individualHtml = file.exists(individualHtmlFileName) ? file.read(individualHtmlFileName) : '';
 
 		if(file.exists(listHtmlFileName)){
 			var previewerHtml = previewer.render({
@@ -54,8 +56,23 @@ module.exports = function (grunt) {
 					'html': listHtml
 				}
 			})
+			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 		}
-		else {
+		if(file.exists(individualHtmlFileName)){
+			var previewerHtml = previewer.render({
+				'name': name,
+	            //'project': project,
+				'webRoot': webRoot,
+				'pathToAssets': '/static/',
+				//'pathToGuide': webRoot + '/templates/',
+	            'views': getViews(),
+				'code': {
+					'html': individualHtml
+				}
+			})
+			file.write(pagesDirectory + 'views/' + 'individual-review/' + '/index.html', previewerHtml);
+		}
+		if(file.exists(htmlFilename)) {
 			var previewerHtml = previewer.render({
 				'name': name,
 	            //'project': project,
@@ -67,8 +84,8 @@ module.exports = function (grunt) {
 					'html': html
 				}
 			})
+			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 		}
-		file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 	}
 
 	getViews().forEach(compilePreview);

@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         new nunjucks.FileSystemLoader('guide')
     ]);
     var componentsDirectory = 'components/';
-    var viewsDirectory = 'templates/';
+    var viewsDirectory = 'pages/views/';
 	var guideDirectory = 'front-end-guide/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
@@ -39,6 +39,8 @@ module.exports = function (grunt) {
                 return grunt.file.isDir(viewsDirectory + name);
             });
     }
+
+    console.log(getViews());
 
 	var template = getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
