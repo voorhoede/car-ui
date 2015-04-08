@@ -1,3 +1,7 @@
+/**
+* Compile preview page for each view in the templates directory
+*/
+
 var fs 			= require('fs');
 var grunt 		= require('grunt');
 var marked  	= require('marked');
@@ -40,24 +44,43 @@ module.exports = function (grunt) {
 		var listHtmlFileName = templatesDirectory + name + '/' + 'list.html';
 		var individualHtmlFileName = templatesDirectory + name + '/' + 'individual.html';
 
+		var html = file.exists(htmlFilename) ? file.read(htmlFilename) : '';
+		var listHtml = file.exists(listHtmlFileName) ? file.read(listHtmlFileName) : '';
+		var individualHtml = file.exists(individualHtmlFileName) ? file.read(individualHtmlFileName) : '';
+
 		if(file.exists(listHtmlFileName)){
-			var html = file.read(listHtmlFileName);
+			var previewerHtml = previewer.render({
+				'name': name,
+				'pathToAssets': '/static/',
+	            'views': getViews(),
+				'code': {
+					'html': listHtml
+				}
+			})
+			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 		}
 		if(file.exists(individualHtmlFileName)){
-			var html = file.read(individualHtmlFileName);
+			var previewerHtml = previewer.render({
+				'name': name,
+				'pathToAssets': '/static/',
+	            'views': getViews(),
+				'code': {
+					'html': individualHtml
+				}
+			})
+			file.write(pagesDirectory + 'views/' + 'individual-review/' + '/index.html', previewerHtml);
 		}
-		if(file.exists(htmlFilename)){
-			var html = file.read(htmlFilename);
+		if(file.exists(htmlFilename)) {
+			var previewerHtml = previewer.render({
+				'name': name,
+				'pathToAssets': '/static/',
+	            'views': getViews(),
+				'code': {
+					'html': html
+				}
+			})
+			file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 		}
-
-		var previewerHtml = previewer.render({
-			'name': name,
-			'pathToAssets': '/static/',
-            'views': getViews(),
-			'code': {
-				'html': html
-			}
-		})
 	}
 
 	getViews().forEach(compilePreview);
