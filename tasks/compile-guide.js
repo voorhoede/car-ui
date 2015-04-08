@@ -40,15 +40,11 @@ module.exports = function (grunt) {
             });
     }
 
-    console.log(getViews());
-
 	var template = getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
 		'name': 'Front-end Guide',
-		// 'project': project,
 		'webRoot': webRoot,
 		'pathToAssets': '/static/',
-		// 'hrefPrefix': compiler.hrefPrefix,
 		'pathToGuide': webRoot + 'guide/',
 		'components': getComponents(),
 		'views': getViews()

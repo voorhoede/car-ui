@@ -47,10 +47,8 @@ module.exports = function (grunt) {
 		if(file.exists(listHtmlFileName)){
 			var previewerHtml = previewer.render({
 				'name': name,
-	            //'project': project,
 				'webRoot': webRoot,
 				'pathToAssets': '/static/',
-				//'pathToGuide': webRoot + '/templates/',
 	            'views': getViews(),
 				'code': {
 					'html': listHtml
@@ -61,10 +59,8 @@ module.exports = function (grunt) {
 		if(file.exists(individualHtmlFileName)){
 			var previewerHtml = previewer.render({
 				'name': name,
-	            //'project': project,
 				'webRoot': webRoot,
 				'pathToAssets': '/static/',
-				//'pathToGuide': webRoot + '/templates/',
 	            'views': getViews(),
 				'code': {
 					'html': individualHtml
@@ -75,10 +71,8 @@ module.exports = function (grunt) {
 		if(file.exists(htmlFilename)) {
 			var previewerHtml = previewer.render({
 				'name': name,
-	            //'project': project,
 				'webRoot': webRoot,
 				'pathToAssets': '/static/',
-				//'pathToGuide': webRoot + '/templates/',
 	            'views': getViews(),
 				'code': {
 					'html': html

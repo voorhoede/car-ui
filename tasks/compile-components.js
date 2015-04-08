@@ -53,10 +53,8 @@ module.exports = function (grunt) {
 
 		var previewerHtml = previewer.render({
 			'name': name,
-            //'project': project,
 			'webRoot': webRoot,
 			'pathToAssets': '/static/',
-			//'pathToGuide': webRoot + '/templates/',
             'components': getComponents(),
 			'code': {
 				'html': html,
