@@ -26,11 +26,11 @@
         <ul>
             {% for view in views %}
             <li>
-                <a href="{{ 'modules/views/' + view + '/' + view + '.html' }}">
+                <a href="{{ '/views/' + view + '/' + 'index.html' }}">
                     {{ view | replace("-"," ") | capitalize }}
                 </a>
                 <a class="app-guide-icon app-guide-icon-tags"
-                   href="{{ 'modules/views/' + view + '/' + view + '.html?debug' }}"></a>
+                   href="{{ '/views/' + view + '/' + 'index.html?debug' }}"></a>
             </li>
             {% endfor %}
         </ul>

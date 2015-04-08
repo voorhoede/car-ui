@@ -10,6 +10,7 @@ module.exports = function (grunt) {
         new nunjucks.FileSystemLoader('guide')
     ]);
     var componentsDirectory = 'components/';
+    var viewsDirectory = 'templates/';
 	var guideDirectory = 'front-end-guide/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
@@ -31,6 +32,14 @@ module.exports = function (grunt) {
 	    });
     }
 
+    function getViews () {
+        return fs.readdirSync(viewsDirectory)
+            .filter(isNotUnderscored)
+            .filter(function(name){
+                return grunt.file.isDir(viewsDirectory + name);
+            });
+    }
+
 	var template = getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
 		'name': 'Front-end Guide',
@@ -39,8 +48,8 @@ module.exports = function (grunt) {
 		'pathToAssets': '/static/',
 		// 'hrefPrefix': compiler.hrefPrefix,
 		'pathToGuide': webRoot + 'guide/',
-		'components': getComponents()
-		// 'views': compiler.getViews(),
+		'components': getComponents(),
+		'views': getViews()
 	});
 
 	grunt.file.write(pagesDirectory + guideDirectory + '/index.html', html);
