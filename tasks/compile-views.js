@@ -29,8 +29,6 @@ module.exports = function (grunt) {
             });
     }
 
-    console.log('GET VIEWS: ', getViews());
-
 	var previewer = getTemplate(
 			'../guide/_component-previewer/component-previewer-object.html');
 
@@ -39,20 +37,37 @@ module.exports = function (grunt) {
 		var webRoot = '../../../';
 
 		var htmlFilename = viewsDirectory + name + '/' + name + '.html';
+		var listHtmlFileName = viewsDirectory + name + '/' + 'list.html';
 
 		var html = file.exists(htmlFilename) ? file.read(htmlFilename) : '';
+		var listHtml = file.exists(listHtmlFileName) ? file.read(listHtmlFileName) : '';
 
-		var previewerHtml = previewer.render({
-			'name': name,
-            //'project': project,
-			'webRoot': webRoot,
-			'pathToAssets': '/static/',
-			//'pathToGuide': webRoot + '/templates/',
-            'views': getViews(),
-			'code': {
-				'html': html
-			}
-		})
+		if(file.exists(listHtmlFileName)){
+			var previewerHtml = previewer.render({
+				'name': name,
+	            //'project': project,
+				'webRoot': webRoot,
+				'pathToAssets': '/static/',
+				//'pathToGuide': webRoot + '/templates/',
+	            'views': getViews(),
+				'code': {
+					'html': listHtml
+				}
+			})
+		}
+		else {
+			var previewerHtml = previewer.render({
+				'name': name,
+	            //'project': project,
+				'webRoot': webRoot,
+				'pathToAssets': '/static/',
+				//'pathToGuide': webRoot + '/templates/',
+	            'views': getViews(),
+				'code': {
+					'html': html
+				}
+			})
+		}
 		file.write(pagesDirectory + 'views/' + name +  '/index.html', previewerHtml);
 	}
 
