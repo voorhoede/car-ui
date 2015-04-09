@@ -1,3 +1,4 @@
+var compiler    = require('./utilities/compiler');
 var fs 			= require('fs');
 var grunt 		= require('grunt');
 var marked  	= require('marked');
@@ -6,31 +7,19 @@ var nunjucks 	= require('nunjucks');
 module.exports = function (grunt) {
 	'use strict';
 
-	var env = new nunjucks.Environment([
-        new nunjucks.FileSystemLoader('guide')
-    ]);
 	var componentsDirectory = 'components/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
 
-
-	function getTemplate (path) {
-        return env.getTemplate(path);
-    }
-
-	function isNotUnderscored (str) {
-        return !(str.substring(0,1).match(/_/g));
-    }
-
 	function getComponents () {
         return fs.readdirSync(componentsDirectory)
-	        .filter(isNotUnderscored)
+	        .filter(compiler.isNotUnderscored)
 	        .filter(function(name){
 	            return grunt.file.isDir(componentsDirectory + name);
 	    });
     }
 
-	var previewer = getTemplate(
+	var previewer = compiler.getTemplate(
 			'../guide/_component-previewer/component-previewer.html');
 
 	function compilePreview (name) {

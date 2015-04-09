@@ -2,41 +2,31 @@
 * Compile preview page for each view in the templates directory
 */
 
+var compiler    = require('./utilities/compiler');
 var fs 			= require('fs');
 var grunt 		= require('grunt');
 var marked  	= require('marked');
-var nunjucks 	= require('nunjucks');		
+var nunjucks 	= require('nunjucks');
 
 module.exports = function (grunt) {
 	'use strict';
 
 	// Loads templates from the 'guide' directory
-	var env = new nunjucks.Environment([
-        new nunjucks.FileSystemLoader('guide')
-    ]);
 	var templatesDirectory = 'templates/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
 
-	function getTemplate (path) {
-        return env.getTemplate(path);
-    }
-
-	function isNotUnderscored (str) {
-        return !(str.substring(0,1).match(/_/g));
-    }
-
 	function getViews () {
 		// returns an array of filenames excluding '.' and '..'.
         return fs.readdirSync(templatesDirectory)
-            .filter(isNotUnderscored)
+            .filter(compiler.isNotUnderscored)
             .filter(function(name){
             	// join all arguments together and normalize the resulting path.
                 return grunt.file.isDir(templatesDirectory + name);
             });
     }
 
-	var previewer = getTemplate(
+	var previewer = compiler.getTemplate(
 			'../guide/_component-previewer/component-previewer-object.html');
 
 	function compilePreview(name) {

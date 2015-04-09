@@ -43,7 +43,6 @@ module.exports = function (grunt) {
 	var template = getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
 		'name': 'Front-end Guide',
-		'webRoot': webRoot,
 		'pathToAssets': '/static/',
 		'pathToGuide': webRoot + 'guide/',
 		'components': getComponents(),
