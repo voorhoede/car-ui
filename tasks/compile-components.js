@@ -11,14 +11,6 @@ module.exports = function (grunt) {
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
 
-	function getComponents () {
-        return fs.readdirSync(componentsDirectory)
-	        .filter(compiler.isNotUnderscored)
-	        .filter(function(name){
-	            return grunt.file.isDir(componentsDirectory + name);
-	    });
-    }
-
 	var previewer = compiler.getTemplate(
 			'../guide/_component-previewer/component-previewer.html');
 
@@ -44,7 +36,7 @@ module.exports = function (grunt) {
 			'name': name,
 			'webRoot': webRoot,
 			'pathToAssets': '/static/',
-            'components': getComponents(),
+            'components': compiler.getComponents(),
 			'code': {
 				'html': html,
 				'css': css,
@@ -55,5 +47,5 @@ module.exports = function (grunt) {
 		file.write(pagesDirectory + componentsDirectory + name +  '/index.html', previewerHtml);
 	}
 
-	getComponents().forEach(compilePreview);
+	compiler.getComponents().forEach(compilePreview);
 };

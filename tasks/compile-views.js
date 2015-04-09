@@ -16,16 +16,6 @@ module.exports = function (grunt) {
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
 
-	function getViews () {
-		// returns an array of filenames excluding '.' and '..'.
-        return fs.readdirSync(templatesDirectory)
-            .filter(compiler.isNotUnderscored)
-            .filter(function(name){
-            	// join all arguments together and normalize the resulting path.
-                return grunt.file.isDir(templatesDirectory + name);
-            });
-    }
-
 	var previewer = compiler.getTemplate(
 			'../guide/_component-previewer/component-previewer-object.html');
 
@@ -42,7 +32,7 @@ module.exports = function (grunt) {
 			var previewerHtml = previewer.render({
 				'name': name,
 				'pathToAssets': '/static/',
-	            'views': getViews(),
+	            'views': compiler.getViews(),
 				'code': {
 					'html': listHtml
 				}
@@ -53,7 +43,7 @@ module.exports = function (grunt) {
 			var previewerHtml = previewer.render({
 				'name': name,
 				'pathToAssets': '/static/',
-	            'views': getViews(),
+	            'views': compiler.getViews(),
 				'code': {
 					'html': individualHtml
 				}
@@ -64,7 +54,7 @@ module.exports = function (grunt) {
 			var previewerHtml = previewer.render({
 				'name': name,
 				'pathToAssets': '/static/',
-	            'views': getViews(),
+	            'views': compiler.getViews(),
 				'code': {
 					'html': html
 				}
@@ -73,5 +63,5 @@ module.exports = function (grunt) {
 		}
 	}
 
-	getViews().forEach(compilePreview);
+	compiler.getViews().forEach(compilePreview);
 };
