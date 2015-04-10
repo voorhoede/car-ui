@@ -4,7 +4,7 @@
 	<title>
 		
 Reviews (preview) 
-		Reviews | 
+		Reviews | Car UI
 		
 
 	</title>
@@ -49,7 +49,15 @@ Reviews (preview)
 
 
 		
-	
+	{% extends "templates/_base/base.html" %}
+{% import "components/shortlist/_shortlist.html" as shortlist %}
+
+{% block content %}
+<section class="view-reviews">
+  {{ shortlist.list("Reviews", cms.reviews) }}
+</section>
+{% endblock %}
+
 
 
 		
@@ -68,7 +76,7 @@ Reviews (preview)
 		ga('send', 'pageview');
 	</script>
 	
-<script src="../../..//guide/vendor/prismjs/prism.js"></script>
+<script src="../../../guide/vendor/prismjs/prism.js"></script>
 
 
 
