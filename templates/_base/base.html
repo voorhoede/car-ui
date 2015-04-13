@@ -58,14 +58,14 @@
       <![endif]-->
 
       {% block header %}
-        {% include "components/header/header.html" %}
+        {% include "components/header/_header.html" %}
       {% endblock %}
 
       {# By default, your inner pages will load into this block. #}
       {% block content %}{% endblock %}
 
       {% block footer %}
-        {% include "components/footer/footer.html" %}
+        {% include "components/footer/_footer.html" %}
       {% endblock %}
 
       {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
