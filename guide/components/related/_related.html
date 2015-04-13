@@ -1,0 +1,46 @@
+{% macro related(content) %}
+<!-- related -->
+<div class="related" data-component="related">
+	<section class="max-width-centered">
+		<h1>RELATED TESTS</h1>
+		{% for product in content %}<!--
+		--><a class="related-product" href="{{ product.url }}">
+			<img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
+			<div class="related-title" data-equal-height>
+				<h2>{{ product.title }}<span>{{ product.subTitle }}</span></h2>
+				<span class="related-score">{{ product.score }}</span>
+			</div>
+		</a><!--
+		-->{% endfor %}
+	</section>
+</div>
+<!-- /related -->
+{% endmacro %}
+
+{%
+	set relatedContent = [
+		{
+			title: 'Nissan Quashqai Tekna Opique',
+			subTitle: 'Si4 4WD Dynamic',
+			score: '4.5',
+			visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+			url: '#'
+		},
+		{
+			title: 'Opel Insignia',
+			subTitle: 'Business Edition',
+			score: '2',
+			visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+			url: '#'
+		},
+		{
+			title: 'Citroën C4 Picasso',
+			subTitle: 'Business Edition',
+			score: '5.5',
+			visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+			url: '#'
+		}
+	]
+%}
+
+{{ related(relatedContent) }}

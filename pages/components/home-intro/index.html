@@ -62,7 +62,10 @@ Home intro (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Home intro</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `home-intro` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,7 +82,37 @@ Home intro (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			
+			{% macro homeIntro(content) %}
+<!-- home-intro -->
+<div class="home-intro" data-component="home-intro">
+	<img class="home-intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
+	<section class="home-intro-content">
+		<h1 itemprop="name">
+			{{ content.title }}
+		</h1>
+		<p itemprop="description">
+			{{ content.description }}
+		</p>
+		<a href="{{ content.url }}" class="about-button ui-button-secondary">More about Car UI</a>
+	</section>
+	<div class="triangle"></div>
+</div>
+<!-- /home-intro -->
+{% endmacro %}
+
+{# this will only output in component guide #}
+{%
+	set homeIntroContent = {
+		url: '#',
+		backgroundImage: pathToAssets + 'images/home/home-intro.jpg',
+		backgroundImageAlt: '',
+		title: 'WAAR GAAT DIT OVER?',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+	}
+%}
+{{ homeIntro(homeIntroContent) }}
+
+
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -97,6 +130,53 @@ Home intro (preview)
 		
 
 		
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML 
+<a href="#section-code-html"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>{% macro homeIntro(content) %}
+&lt;!-- home-intro -->
+&lt;div class="home-intro" data-component="home-intro">
+	&lt;img class="home-intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
+	&lt;section class="home-intro-content">
+		&lt;h1 itemprop="name">
+			{{ content.title }}
+		&lt;/h1>
+		&lt;p itemprop="description">
+			{{ content.description }}
+		&lt;/p>
+		&lt;a href="{{ content.url }}" class="about-button ui-button-secondary">More about Car UI&lt;/a>
+	&lt;/section>
+	&lt;div class="triangle">&lt;/div>
+&lt;/div>
+&lt;!-- /home-intro -->
+{% endmacro %}
+
+{# this will only output in component guide #}
+{%
+	set homeIntroContent = {
+		url: '#',
+		backgroundImage: pathToAssets + 'images/home/home-intro.jpg',
+		backgroundImageAlt: '',
+		title: 'WAAR GAAT DIT OVER?',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+	}
+%}
+{{ homeIntro(homeIntroContent) }}
+
+</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_home-intro.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_home-intro.html" download="_home-intro.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		
 
 		
 		<section id="section-code-css">
@@ -108,8 +188,8 @@ Home intro (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* home-intro component */
 $home-intro-break-small: 680px;

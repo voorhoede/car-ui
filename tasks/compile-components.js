@@ -7,6 +7,7 @@ var nunjucks 	= require('nunjucks');
 module.exports = function (grunt) {
 	'use strict';
 
+	var guideComponentsDirectory = 'guide/components/';
 	var componentsDirectory = 'components/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
@@ -18,20 +19,20 @@ module.exports = function (grunt) {
 
 		var webRoot = '../../../';
 
-		var htmlFilename = componentsDirectory + name + '/_' + name + '.html';
+		var htmlFilename = guideComponentsDirectory + name + '/_' + name + '.html';
 		var html = file.exists(htmlFilename) ? file.read(htmlFilename) : '';
 
-		var cssFilename = componentsDirectory + name + '/_' + name + '.scss';
+		var cssFilename = guideComponentsDirectory + name + '/_' + name + '.scss';
 		var css = file.exists(cssFilename) ? file.read(cssFilename) : '';
 
-		var jsFilename = componentsDirectory + name + '/_' + name + '.js';
+		var jsFilename = guideComponentsDirectory + name + '/_' + name + '.js';
 		var js = file.exists(jsFilename) ? file.read(jsFilename) : '';
 
-		var readmeFilename = componentsDirectory + name + '/README.md';
+		var readmeFilename = guideComponentsDirectory + name + '/README.md';
 		var readme = file.exists(readmeFilename) ? file.read(readmeFilename) : '';
 		readme = marked(readme)
 			.replace(/<code>/g, '<code class="language-unknown">'); // triggers primsjs css
-
+			
 		var previewerHtml = previewer.render({
 			'name': name,
 			'webRoot': webRoot,

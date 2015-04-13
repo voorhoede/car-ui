@@ -62,7 +62,10 @@ Quote (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Quote</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `quote` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,13 +82,20 @@ Quote (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<!-- quote -->
+			{% macro quoteBlock(quote) %}
+<!-- quote -->
 <div class="quote" data-component="quote">
 	<section class="max-width-centered">
-		<blockquote>{{ item.quote }}</blockquote>
+		<blockquote>{{ quote }}</blockquote>
 	</section>
 </div>
 <!-- /quote -->
+{% endmacro %}
+
+{%
+	set quote = 'Iconen zijn op meerdere plekken terug te vinden. Het zijn allemaal lijniconen, maar voelen niet altijd als onderdeel van dezelfde serie.'
+%}
+{{ quoteBlock(quote) }}
 
 		</div>
 		<div class="app-guide-preview-bottom">
@@ -113,13 +123,20 @@ Quote (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;!-- quote -->
+				<pre class="language-markup"><code>{% macro quoteBlock(quote) %}
+&lt;!-- quote -->
 &lt;div class="quote" data-component="quote">
 	&lt;section class="max-width-centered">
-		&lt;blockquote>{{ item.quote }}&lt;/blockquote>
+		&lt;blockquote>{{ quote }}&lt;/blockquote>
 	&lt;/section>
 &lt;/div>
 &lt;!-- /quote -->
+{% endmacro %}
+
+{%
+	set quote = 'Iconen zijn op meerdere plekken terug te vinden. Het zijn allemaal lijniconen, maar voelen niet altijd als onderdeel van dezelfde serie.'
+%}
+{{ quoteBlock(quote) }}
 </code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_quote.html" title="view source HTML"></a></li>
@@ -139,8 +156,8 @@ Quote (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* quote component */
 

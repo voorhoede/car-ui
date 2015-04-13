@@ -1805,8 +1805,8 @@ blockquote {
 
 @font-face {
   font-family: 'app-guide';
-  src: url("/vendor/app-guide-font/fonts/app-guide.eot");
-  src: url("/vendor/app-guide-font/fonts/app-guide.eot?#iefix") format("embedded-opentype"), url("/vendor/app-guide-font/fonts/app-guide.woff") format("woff"), url("/vendor/app-guide-font/fonts/app-guide.ttf") format("truetype"), url("/vendor/app-guide-font/fonts/app-guide.svg#app-guide") format("svg");
+  src: url("/static/fonts/app-guide.eot");
+  src: url("/static/fonts/app-guide.eot?#iefix") format("embedded-opentype"), url("/static/fonts/app-guide.woff") format("woff"), url("/static/fonts/app-guide.ttf") format("truetype"), url("/static/fonts/app-guide.svg#app-guide") format("svg");
   font-weight: normal;
   font-style: normal; }
 .app-guide-icon {

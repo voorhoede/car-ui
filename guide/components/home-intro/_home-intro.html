@@ -1,0 +1,30 @@
+{% macro homeIntro(content) %}
+<!-- home-intro -->
+<div class="home-intro" data-component="home-intro">
+	<img class="home-intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
+	<section class="home-intro-content">
+		<h1 itemprop="name">
+			{{ content.title }}
+		</h1>
+		<p itemprop="description">
+			{{ content.description }}
+		</p>
+		<a href="{{ content.url }}" class="about-button ui-button-secondary">More about Car UI</a>
+	</section>
+	<div class="triangle"></div>
+</div>
+<!-- /home-intro -->
+{% endmacro %}
+
+{# this will only output in component guide #}
+{%
+	set homeIntroContent = {
+		url: '#',
+		backgroundImage: pathToAssets + 'images/home/home-intro.jpg',
+		backgroundImageAlt: '',
+		title: 'WAAR GAAT DIT OVER?',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+	}
+%}
+{{ homeIntro(homeIntroContent) }}
+

@@ -1,0 +1,158 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* intro component */
+
+.detail-intro-text,
+.detail-intro {
+	background-color: $light-grey;
+	padding-top: 0;
+	padding-bottom: $intro-summary-overlap;
+	@include min-screen($break-large) {
+		padding-top: 30px;
+	}
+
+	.intro-background {
+		display: block;
+		margin: 0 auto;
+		max-width: 100%;
+	}
+
+	.intro-content {
+		background-color: $white;
+
+		@include min-screen($break-large) {
+			margin-top: -170px;
+		}
+	}
+
+	.intro-text {
+		@include clearfix;
+		@include transition(height .2s ease-out);
+
+		background-color: $white;
+		padding: 30px 30px 25px 33px;
+		text-align: center;
+
+		@include min-screen($break-small) {
+			@include box-sizing(border-box);
+
+			display: inline-block;
+			vertical-align: top;
+			width: 66%;
+			padding-bottom: 0;
+			text-align: left;
+		}
+
+		header,
+		p {
+			text-align: left;
+		}
+
+		h1,
+		.intro-title-image {
+			display: inline-block;
+			vertical-align: top;
+			width: 33%;
+
+			@include min-screen($break-small) {
+				width: auto;
+			}
+		}
+
+		.intro-title-image {
+			margin-right: 20px;
+		}
+
+		h1 {
+			display: inline-block;
+			vertical-align: top;
+			margin: 0;
+			max-width: 70%;
+		}
+
+		.subtitle {
+			display: block;
+			font-size: .55em;
+		}
+
+		.inline-visual {
+			width: auto;
+			max-width: 100%;
+
+			@include min-screen($break-small) {
+				float: right;
+				padding: 20px 0 30px 30px;
+			}
+		}
+
+		p {
+			font-size: 1.6em;
+		}
+	}
+
+	.widget-score-block {
+		.widget-score {
+			@include transition(height .2s ease-out);
+		}
+
+		@include min-screen($break-small) {
+			@include box-sizing(border-box);
+
+			display: inline-block;
+			vertical-align: top;
+			width: 34%;
+		}
+	}
+
+	.social-buttons {
+		@include transition(margin .2s ease-out);
+
+		background-color: $white;
+		padding: 0 0 30px 30px;
+
+		@include min-screen($break-small) {
+			@include box-sizing(border-box);
+
+			display: inline-block;
+			vertical-align: top;
+			width: 66.66%;
+
+			// Set a negative margin to the height of the social-buttons
+			// container to avoid movement on initial page load
+			margin-top: -102px;
+		}
+
+		.social-button {
+			@include transition(background .2s ease-out);
+			@include hide-text;
+
+			display: inline-block;
+			border: none;
+			width: 30px;
+			height: 30px;
+		}
+
+		p {
+			color: $dark-grey;
+			font-size: 1.2em;
+			margin: 0;
+			padding: 10px 0;
+		}
+	}
+}
+
+.detail-intro-text {
+	padding-bottom: 0;
+	margin-bottom: 60px;
+
+	.intro-text {
+		width: auto;
+		padding-bottom: 30px;
+
+		h1 {
+			max-width: 100%;
+			width: 100%;
+		}
+	}
+}

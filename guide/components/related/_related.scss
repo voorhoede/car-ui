@@ -1,0 +1,97 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* related component */
+
+.related {
+	background-color: $light-grey;
+	padding: 30px 30px 60px 30px;
+
+	.related-product {
+		@include transition(box-shadow .2s ease-out);
+
+		border: none;
+		display: none;
+		vertical-align: top;
+		width: 100%;
+		margin-bottom: 20px;
+
+		// Show only the first two items
+		&:nth-of-type(1),
+		&:nth-of-type(2) {
+			display: inline-block;
+		}
+		
+		@include min-screen($break-small) {
+			width: 48%;
+
+			&:nth-of-type(1) {
+				margin-right: 4%;
+			}
+		}
+
+		@include min-screen($break-large) {
+			display: inline-block; // Show all the items
+			width: 31.33%;
+			margin-left: 3%;
+
+			&:nth-of-type(1) {
+				margin: 0;
+			}
+		}
+		
+		&:hover,
+		&:focus {
+			@include transition(box-shadow .2s ease-out);
+			@include box-shadow(0 0 15px 1px $shadow-color);
+
+			.related-score {
+				color: $black;
+			}
+		}
+
+		img {
+			vertical-align: bottom;
+			width: 100%;
+		}
+
+		.related-title {
+			background-color: $white;
+			position: relative;
+
+			@include min-screen($break-small) {
+				min-height: 155px;
+			}
+
+			h2 {
+				@include header-font();
+
+				margin: 0;
+				padding: 25px 30px 35px 30px;
+				font-size: 25px;
+
+				span {
+					@include normal-font();
+
+					display: block;
+					font-size: 20px;
+					line-height: 2;
+				}
+			}
+
+			.related-score {
+				@include header-font();
+
+				display: block;
+				background-color: $yellow;
+				padding: 10px;
+				position: absolute;
+				bottom: 100%;
+				right: 0;
+				font-size: 30px;
+				min-width: 40px;
+				text-align: center;
+			}
+		}
+	}
+}

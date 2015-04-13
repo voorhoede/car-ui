@@ -62,7 +62,10 @@ Bibliography (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Bibliography</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `bibliography` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,22 +82,57 @@ Bibliography (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<div class="bibliography" data-component="bibliography">
-  <section class="max-width-centered">
-    <h1>Source</h1>
-    <ol>
-      {% for source in cms.about.source %}
-      <li>
-        {{ loop.index }}:
-        {% if source.title %}
-          {{ source.title }}
-        {% endif %}
-        {% if source.title %}({% endif %}<a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}</a>{% if source.title %}){% endif %}{% if not loop.last %},{% endif %}
-      </li>
-      {% endfor %}
-    </ol>
-  </section>
+			{% macro bibliography(content) %}
+<!-- bibliography -->
+<div class="bibliography" data-component="bibliography">
+	<section class="max-width-centered">
+		<h1>{{ content.title }}</h1>
+		<ol>
+			{% for source in content.sources %}
+			<li>
+				{{ loop.index }}:
+				{% if source.label %}
+					{{ source.label }}
+				{% endif %}
+				{% if source.label %}({% endif %}<a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}</a>{% if source.label %}){% endif %}{% if not loop.last %},{% endif %}
+			</li>
+			{% endfor %}
+		</ol>
+	</section>
 </div>
+<!-- /bibliography -->
+{% endmacro %}
+
+{%
+	set sourceList = {
+		title: 'Sources',
+		sources: [
+			{
+				label: 'History of the automobile',
+				url: 'http://en.wikipedia.org/wiki/History_of_the_automobile'
+			},
+			{
+				label: 'Automotive design',
+				url: 'http://en.wikipedia.org/wiki/Automotive_design'
+			},
+			{
+				label: 'Car design history',
+				url: 'http://www.diseno-art.com/car_design_history.html'
+			},
+			{
+				label: 'What web designers can learn from Google’s Material Design',
+				url: 'http://www.webdesignerdepot.com/2014/10/what-web-designers-can-learn-from-googles-material-design/'
+			},
+			{
+				url: 'http://youtu.be/i3GC4dQ7Cs8?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			},
+			{
+				url: 'http://youtu.be/Vhygzio7oA0?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			}
+		]
+	}
+%}
+{{ bibliography(sourceList) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -121,22 +159,57 @@ Bibliography (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;div class="bibliography" data-component="bibliography">
-  &lt;section class="max-width-centered">
-    &lt;h1>Source&lt;/h1>
-    &lt;ol>
-      {% for source in cms.about.source %}
-      &lt;li>
-        {{ loop.index }}:
-        {% if source.title %}
-          {{ source.title }}
-        {% endif %}
-        {% if source.title %}({% endif %}&lt;a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}&lt;/a>{% if source.title %}){% endif %}{% if not loop.last %},{% endif %}
-      &lt;/li>
-      {% endfor %}
-    &lt;/ol>
-  &lt;/section>
-&lt;/div></code></pre>
+				<pre class="language-markup"><code>{% macro bibliography(content) %}
+&lt;!-- bibliography -->
+&lt;div class="bibliography" data-component="bibliography">
+	&lt;section class="max-width-centered">
+		&lt;h1>{{ content.title }}&lt;/h1>
+		&lt;ol>
+			{% for source in content.sources %}
+			&lt;li>
+				{{ loop.index }}:
+				{% if source.label %}
+					{{ source.label }}
+				{% endif %}
+				{% if source.label %}({% endif %}&lt;a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}&lt;/a>{% if source.label %}){% endif %}{% if not loop.last %},{% endif %}
+			&lt;/li>
+			{% endfor %}
+		&lt;/ol>
+	&lt;/section>
+&lt;/div>
+&lt;!-- /bibliography -->
+{% endmacro %}
+
+{%
+	set sourceList = {
+		title: 'Sources',
+		sources: [
+			{
+				label: 'History of the automobile',
+				url: 'http://en.wikipedia.org/wiki/History_of_the_automobile'
+			},
+			{
+				label: 'Automotive design',
+				url: 'http://en.wikipedia.org/wiki/Automotive_design'
+			},
+			{
+				label: 'Car design history',
+				url: 'http://www.diseno-art.com/car_design_history.html'
+			},
+			{
+				label: 'What web designers can learn from Google’s Material Design',
+				url: 'http://www.webdesignerdepot.com/2014/10/what-web-designers-can-learn-from-googles-material-design/'
+			},
+			{
+				url: 'http://youtu.be/i3GC4dQ7Cs8?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			},
+			{
+				url: 'http://youtu.be/Vhygzio7oA0?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			}
+		]
+	}
+%}
+{{ bibliography(sourceList) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_bibliography.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_bibliography.html" download="_bibliography.html" title="download HTML"></a></li>
@@ -155,8 +228,8 @@ Bibliography (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* bibliography component */
 

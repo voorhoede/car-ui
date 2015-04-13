@@ -62,7 +62,10 @@ Related (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Related</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `related` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,23 +82,52 @@ Related (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<!-- related -->
+			{% macro related(content) %}
+<!-- related -->
 <div class="related" data-component="related">
 	<section class="max-width-centered">
 		<h1>RELATED TESTS</h1>
-		{% for review in cms.about.related_review %}<!--
-		--><a class="related-product" href="{{ review.url }}">
-			<img src="{{ review.related_visual|imageSize(280,200) }}" alt="{{ review.title  + ' - ' + review.sub_title }}" />
+		{% for product in content %}<!--
+		--><a class="related-product" href="{{ product.url }}">
+			<img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
 			<div class="related-title" data-equal-height>
-				<h2>{{ review.title }}<span>{{ review.sub_title }}</span></h2>
-				<span class="related-score">{{ review.score }}</span>
+				<h2>{{ product.title }}<span>{{ product.subTitle }}</span></h2>
+				<span class="related-score">{{ product.score }}</span>
 			</div>
 		</a><!--
 		-->{% endfor %}
 	</section>
 </div>
 <!-- /related -->
+{% endmacro %}
 
+{%
+	set relatedContent = [
+		{
+			title: 'Nissan Quashqai Tekna Opique',
+			subTitle: 'Si4 4WD Dynamic',
+			score: '4.5',
+			visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+			url: '#'
+		},
+		{
+			title: 'Opel Insignia',
+			subTitle: 'Business Edition',
+			score: '2',
+			visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+			url: '#'
+		},
+		{
+			title: 'Citroën C4 Picasso',
+			subTitle: 'Business Edition',
+			score: '5.5',
+			visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+			url: '#'
+		}
+	]
+%}
+
+{{ related(relatedContent) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -122,23 +154,52 @@ Related (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;!-- related -->
+				<pre class="language-markup"><code>{% macro related(content) %}
+&lt;!-- related -->
 &lt;div class="related" data-component="related">
 	&lt;section class="max-width-centered">
 		&lt;h1>RELATED TESTS&lt;/h1>
-		{% for review in cms.about.related_review %}&lt;!--
-		-->&lt;a class="related-product" href="{{ review.url }}">
-			&lt;img src="{{ review.related_visual|imageSize(280,200) }}" alt="{{ review.title  + ' - ' + review.sub_title }}" />
+		{% for product in content %}&lt;!--
+		-->&lt;a class="related-product" href="{{ product.url }}">
+			&lt;img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
 			&lt;div class="related-title" data-equal-height>
-				&lt;h2>{{ review.title }}&lt;span>{{ review.sub_title }}&lt;/span>&lt;/h2>
-				&lt;span class="related-score">{{ review.score }}&lt;/span>
+				&lt;h2>{{ product.title }}&lt;span>{{ product.subTitle }}&lt;/span>&lt;/h2>
+				&lt;span class="related-score">{{ product.score }}&lt;/span>
 			&lt;/div>
 		&lt;/a>&lt;!--
 		-->{% endfor %}
 	&lt;/section>
 &lt;/div>
 &lt;!-- /related -->
-</code></pre>
+{% endmacro %}
+
+{%
+	set relatedContent = [
+		{
+			title: 'Nissan Quashqai Tekna Opique',
+			subTitle: 'Si4 4WD Dynamic',
+			score: '4.5',
+			visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+			url: '#'
+		},
+		{
+			title: 'Opel Insignia',
+			subTitle: 'Business Edition',
+			score: '2',
+			visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+			url: '#'
+		},
+		{
+			title: 'Citroën C4 Picasso',
+			subTitle: 'Business Edition',
+			score: '5.5',
+			visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+			url: '#'
+		}
+	]
+%}
+
+{{ related(relatedContent) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_related.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_related.html" download="_related.html" title="download HTML"></a></li>
@@ -157,8 +218,8 @@ Related (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* related component */
 

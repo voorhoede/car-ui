@@ -1,0 +1,40 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* bibliography component */
+
+.bibliography {
+	background-color: $medium-grey;
+	color: $dark-grey;
+	font-size: 12px;
+	padding: 25px 40px;
+
+	h1 {
+		font-size: 12px;
+	}
+
+	ol {
+		@include clearfix;
+
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			float: left;
+			font-size: 12px;
+			padding-right: 5px;
+
+			a {
+				font-size: 12px;
+				color: $dark-grey;
+				border-bottom-color: transparent;
+
+				&:hover {
+					border-bottom-color: $dark-grey;
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,139 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* widget-score component */
+
+$headerHeight: 		80px;
+
+.widget-score {
+	background-color: $medium-grey;
+	overflow: hidden;
+	position: relative;
+	min-height: 220px;
+	padding-bottom: 15px;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	.score-overview {
+		@include box-shadow(0px 0px 2px 1px $dark-grey);
+		@include transition(box-shadow .2s ease-out, height .5s ease-out);
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: $headerHeight;
+		background-color: $yellow;
+		overflow: hidden;
+		z-index: 1; // Just on top of the score-summary
+
+		&:hover,
+		&:focus {
+			@include box-shadow(0px 0px 15px 1px $dark-grey);
+			@include transition(box-shadow .2s ease-out, height .5s ease-out);
+		}
+
+		&.expanded {
+			height: 100%;
+		}
+
+		ul {
+			margin-top: 5px;
+			padding: 0 30px;
+
+			li {
+				margin-bottom: 14px;
+
+				a {
+					@include header-font();
+					@include clearfix();
+
+					border: none;
+					font-size: 25px;
+
+					&:hover,
+					&:focus {
+						color: $black;
+
+						.label {
+							@include transition(border-bottom .2s ease-out);
+
+							border-bottom: 1px solid $black;
+						}
+					}
+
+					.label {
+						@include transition(border-bottom .2s ease-out);
+
+						float: left;
+						border-bottom: 1px solid transparent;
+					}
+
+					.value {
+						float: right;
+					}
+				}
+			}
+		}
+
+		header {
+			cursor: pointer;
+			padding: 15px 30px;
+			position: relative;
+
+			.icon {
+				vertical-align: middle;
+			}
+
+			.icon-arrow-down,
+			.icon-arrow-up {
+				position: absolute;
+				right: 30px;
+				top: 30px;
+			}
+		}
+
+		.score {
+			@include header-font();
+
+			color: $black;
+			font-size: 36px;
+			vertical-align: middle;
+			margin-left: 17px;
+		}
+	}
+
+	.score-summary {
+		@include normal-font();
+
+		padding: 30px;
+		margin-top: $headerHeight;
+		background-color: $medium-grey;
+
+		ul {
+			margin-bottom: 30px;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+
+			li {
+				position: relative;
+				margin-bottom: 15px;
+				padding-left: 30px;
+
+				.icon {
+					position: absolute;
+					left: 0;
+					top: 1px;
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+}

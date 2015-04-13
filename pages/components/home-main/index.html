@@ -62,7 +62,8 @@ Home main (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Home main</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<p>The home-main component is a wrapper component, made to contain other components. It has a width, background-color and padding-bottom.</p>
+
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,7 +80,18 @@ Home main (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			
+			<!-- home-main -->
+<main class="home-main" data-component="home-main">
+	{% import "components/featured/_featured.html" as featured %}
+	{% import "components/shortlist/_shortlist.html" as shortlist %}
+
+	{{ featured.featured(featuredContent) }}
+
+	{{ shortlist.shortlist(shortlistContent) }}
+	<a href="https://plus.google.com/106154057895868859718" rel="publisher" tabindex="-1"></a>
+</main>
+<!-- /home-main -->
+
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -97,6 +109,34 @@ Home main (preview)
 		
 
 		
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML 
+<a href="#section-code-html"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>&lt;!-- home-main -->
+&lt;main class="home-main" data-component="home-main">
+	{% import "components/featured/_featured.html" as featured %}
+	{% import "components/shortlist/_shortlist.html" as shortlist %}
+
+	{{ featured.featured(featuredContent) }}
+
+	{{ shortlist.shortlist(shortlistContent) }}
+	&lt;a href="https://plus.google.com/106154057895868859718" rel="publisher" tabindex="-1">&lt;/a>
+&lt;/main>
+&lt;!-- /home-main -->
+</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_home-main.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_home-main.html" download="_home-main.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		
 
 		
 		<section id="section-code-css">
@@ -108,8 +148,8 @@ Home main (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* home-main component */
 

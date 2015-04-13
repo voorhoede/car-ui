@@ -1,0 +1,43 @@
+{% macro header(navigation) %}
+<!-- header -->
+<header class="header" data-component="header">
+	<div class="header-content">
+		<div class="logo-area">
+			<a href="/" class="logo icon-car-ux-logo">CAR UI</a>
+		</div>
+		<nav>
+			<ul>
+				{% for item in navigation %}
+				<li class="{% if item.active %} active-nav-item {% endif %}">
+					<a href="{{ item.href }}">{{ item.label }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+	<div class="header-background-left"></div>
+	<div class="header-background-right"></div>
+</header>
+<!-- /header -->
+{% endmacro %}
+
+{%
+	set navigation = [
+		{
+			label: 'Home',
+			href: '/modules/views/home/home.html',
+			active: false
+		},
+		{
+			label: 'Reviews',
+			href: '/modules/views/reviews/reviews.html',
+			active: true
+		},
+		{
+			label: 'About<span class="nav-text-large">&nbsp;Car UI</span>',
+			href: '#over',
+			active: false
+		}
+	]
+%}
+{{ header(navigation) }}

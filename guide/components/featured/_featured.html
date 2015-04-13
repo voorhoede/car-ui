@@ -1,0 +1,59 @@
+{% macro featured(content) %}
+<!-- featured -->
+<div class="featured" data-component="featured">
+	<section class="max-width-centered">
+		<h1>{{ content.mainTitle }}</h1>
+		<a href="{{ content.url }}" class="featured-content">
+			<img src="{{ content.visual }}" alt="{{ content.title + ' ' + content.subTitle }}"/>
+
+			<div class="featured-content-wrapper">
+				<time>{{ content.date }}</time>
+				<h2>
+					{{ content.title }}
+					<span class="subtitle">{{ content.subTitle }}</span>
+				</h2>
+				<div class="featured-score">
+					<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
+					{{ content.score}}
+				</div>
+				<hr/>
+				<ul>
+					{% for goodText in content.summary.good %}
+					<li><span class="icon icon-plus-yellow"></span>{{ goodText }}</li>
+					{% endfor %}
+				</ul><!--
+				--><ul>
+					{% for badText in content.summary.bad %}
+					<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</a>
+	</section>
+</div>
+<!-- /featured -->
+{% endmacro %}
+
+{%
+	set featuredContent = {
+		mainTitle: 'NIEUW DIEPTEPUNT',
+		title: 'Land Rover Evoque',
+		subTitle: 'Si4 4WD Dynamic',
+		score: '2,2',
+		date: '02-02-2014',
+		url: '#',
+		visual: pathToAssets + 'images/home/home-featured.jpg',
+		gaugeScore: '4',
+		summary: {
+			good: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing',
+				'Eliti vestibulum consequat lobortis justo vitae.'
+			],
+			bad: [
+				'Vollit vestibulum consequat lobortis justo posuere.',
+				'Bestibulum consequat mauris eget diam risus.'
+			]
+		}
+	}
+%}
+{{ featured(featuredContent) }}

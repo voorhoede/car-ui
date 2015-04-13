@@ -62,7 +62,10 @@ Score (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Score</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `score` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,43 +82,97 @@ Score (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<!-- score -->
+			{% macro scoreExpandible(content) %}
+<!-- score -->
 <section class="score" data-component="score">
 	<div class="score-heading">
 		<h1>SCORES</h1>
-		<span class="testing-date-person">{{ item.tagline }}</span>
+		<span class="testing-date-person">{{ content.testTagline }}</span>
 	</div>
-	{% for widget_score in item.widget_score %}
+	{% for property, value in content.widgetScore.scoreDetails %}
 	<div class="score-item {% if loop.first %}is-expanded{% endif %}"
 		 data-expandible
 		 data-expandible-open-on-focus="true"><!--data-expandible-close-on-blur="true"-->
 		<a href="#0"
-		   name="{{ widget_score.name }}"
+		   name="{{ property }}"
 		   class="score-title"
 		   data-expandible-handle="toggle">
-			<h2>{{ widget_score.name | capitalize }}</h2>
-			<span class="arrow-box">
-				<span class="score-read-more"></span>
-				<span data-icon-arrow
-					class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}"></span>
-			</span>
+			<h2>{{ property | capitalize }}</h2>
+			<span class="arrow-box"><span class="score-read-more"></span><span data-icon-arrow class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}"></span></span>
 		</a>
-		<div class="score-content {% if widget_score.image %}has-visual{% endif %}" data-expandible-content>
+		<div class="score-content {% if value.visual %}has-visual{% endif %}" data-expandible-content>
 			<div class="score-box-wrapper">
 				<div class="score-box">
-					<span class="score-number">{{ widget_score.score }}</span>
-					<span class="score-icon icon icon-gauge{{ item.gauge_score }}"></span>
+					<span class="score-number">{{ value.score }}</span>
+					<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
 				</div>
 			</div><!--
-			--><div class="score-description">
-				{{ widget_score.description|safe }}
-			</div>{% if widget_score.image %}<!--
-			--><img class="score-content-visual" src="{{ item.pathToUploads }}{{ widget_score.image|imageSize(200,200) }}" alt="{{ widget_score.name | capitalize }}" />{% endif %}
+			--><p>
+				{{ value.description }}
+			</p>{% if value.visual %}<!--
+			--><img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />{% endif %}
 		</div>
 	</div>
 	{% endfor %}
 </section>
 <!-- /score -->
+{% endmacro %}
+
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Business model 1.5 TDI',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		gaugeScore: '4',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ scoreExpandible(content) }}
 
 		</div>
 		<div class="app-guide-preview-bottom">
@@ -143,43 +200,97 @@ Score (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;!-- score -->
+				<pre class="language-markup"><code>{% macro scoreExpandible(content) %}
+&lt;!-- score -->
 &lt;section class="score" data-component="score">
 	&lt;div class="score-heading">
 		&lt;h1>SCORES&lt;/h1>
-		&lt;span class="testing-date-person">{{ item.tagline }}&lt;/span>
+		&lt;span class="testing-date-person">{{ content.testTagline }}&lt;/span>
 	&lt;/div>
-	{% for widget_score in item.widget_score %}
+	{% for property, value in content.widgetScore.scoreDetails %}
 	&lt;div class="score-item {% if loop.first %}is-expanded{% endif %}"
 		 data-expandible
 		 data-expandible-open-on-focus="true">&lt;!--data-expandible-close-on-blur="true"-->
 		&lt;a href="#0"
-		   name="{{ widget_score.name }}"
+		   name="{{ property }}"
 		   class="score-title"
 		   data-expandible-handle="toggle">
-			&lt;h2>{{ widget_score.name | capitalize }}&lt;/h2>
-			&lt;span class="arrow-box">
-				&lt;span class="score-read-more">&lt;/span>
-				&lt;span data-icon-arrow
-					class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}">&lt;/span>
-			&lt;/span>
+			&lt;h2>{{ property | capitalize }}&lt;/h2>
+			&lt;span class="arrow-box">&lt;span class="score-read-more">&lt;/span>&lt;span data-icon-arrow class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}">&lt;/span>&lt;/span>
 		&lt;/a>
-		&lt;div class="score-content {% if widget_score.image %}has-visual{% endif %}" data-expandible-content>
+		&lt;div class="score-content {% if value.visual %}has-visual{% endif %}" data-expandible-content>
 			&lt;div class="score-box-wrapper">
 				&lt;div class="score-box">
-					&lt;span class="score-number">{{ widget_score.score }}&lt;/span>
-					&lt;span class="score-icon icon icon-gauge{{ item.gauge_score }}">&lt;/span>
+					&lt;span class="score-number">{{ value.score }}&lt;/span>
+					&lt;span class="icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
 				&lt;/div>
 			&lt;/div>&lt;!--
-			-->&lt;div class="score-description">
-				{{ widget_score.description|safe }}
-			&lt;/div>{% if widget_score.image %}&lt;!--
-			-->&lt;img class="score-content-visual" src="{{ item.pathToUploads }}{{ widget_score.image|imageSize(200,200) }}" alt="{{ widget_score.name | capitalize }}" />{% endif %}
+			-->&lt;p>
+				{{ value.description }}
+			&lt;/p>{% if value.visual %}&lt;!--
+			-->&lt;img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />{% endif %}
 		&lt;/div>
 	&lt;/div>
 	{% endfor %}
 &lt;/section>
 &lt;!-- /score -->
+{% endmacro %}
+
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Business model 1.5 TDI',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		gaugeScore: '4',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ scoreExpandible(content) }}
 </code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_score.html" title="view source HTML"></a></li>
@@ -199,8 +310,8 @@ Score (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* score component */
 
@@ -328,7 +439,7 @@ Score (preview)
 			padding-right: 5em;
 			&.has-visual {
 				padding-right: 2em;
-				.score-description {
+				p {
 					width: 50%;
 				}
 				.score-content-visual {
@@ -389,15 +500,12 @@ Score (preview)
 		width: 50px;
 		height: 50px;
 	}
-	.score-content .score-description {
+	.score-content p {
 		margin: 0;
 		 @include min-screen($break-medium) {
 			 display: inline-block;
+			 vertical-align: top;
 			 width: 75%;
-
-			 p:first-child {
-			 	margin-top: 0;
-			 }
 		 }
 	 }
 	.is-expandible .score-content {

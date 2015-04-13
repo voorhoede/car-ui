@@ -62,7 +62,10 @@ Widget score (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Widget score</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `widget-score` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,21 +82,21 @@ Widget score (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			{% macro widgetScore(item) %}
+			{% macro widgetScore(content) %}
 <!-- widget-score -->
 <div class="widget-score" data-component="widget-score">
 	<div class="score-overview" data-widget-score-overview>
 		<header>
-			<span class="icon icon-gauge{{ item.gauge_score }}"></span>
-			<span class="score">{{ item.score }}</span> 
+			<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
+			<span class="score">{{ content.widgetScore.score }}</span>
 			<span class="icon icon-arrow-down" data-score-header-arrow></span>
 		</header>
 		<ul>
-			{% for widget_score in item.widget_score %}
+			{% for property, value in content.widgetScore.scoreDetails %}
 			<li>
-				<a href="#{{ widget_score.name }}" tabindex="-1">
-					<span class="label">{{ widget_score.name }}</span>
-					<span class="value">{{ widget_score.score }}</span>
+				<a href="#{{ property }}" tabindex="-1">
+					<span class="label">{{ property | capitalize }}</span>
+					<span class="value">{{ value.score }}</span>
 				</a>
 			</li>
 			{% endfor %}
@@ -101,20 +104,74 @@ Widget score (preview)
 	</div>
 	<div class="score-summary">
 		<ul>
-			{% for points in item.positive_points %}
-				<li><span class="icon icon-plus"></span>{{ points.point }}</li>
+			{% for goodText in content.widgetScore.summary.good %}
+				<li><span class="icon icon-plus"></span>{{ goodText }}</li>
 			{% endfor %}
 		</ul>
 		<ul>
-			{% for points in item.negative_points %}
-				<li><span class="icon icon-min-red"></span>{{ points.point }}</li>
-			{% endfor %}  
+			{% for badText in content.widgetScore.summary.bad %}
+				<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>
 <!-- /widget-score -->
 {% endmacro %}
 
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Business model 1.5 TDI',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		gaugeScore: '4',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ widgetScore(content) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -141,21 +198,21 @@ Widget score (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>{% macro widgetScore(item) %}
+				<pre class="language-markup"><code>{% macro widgetScore(content) %}
 &lt;!-- widget-score -->
 &lt;div class="widget-score" data-component="widget-score">
 	&lt;div class="score-overview" data-widget-score-overview>
 		&lt;header>
-			&lt;span class="icon icon-gauge{{ item.gauge_score }}">&lt;/span>
-			&lt;span class="score">{{ item.score }}&lt;/span> 
+			&lt;span class="icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
+			&lt;span class="score">{{ content.widgetScore.score }}&lt;/span>
 			&lt;span class="icon icon-arrow-down" data-score-header-arrow>&lt;/span>
 		&lt;/header>
 		&lt;ul>
-			{% for widget_score in item.widget_score %}
+			{% for property, value in content.widgetScore.scoreDetails %}
 			&lt;li>
-				&lt;a href="#{{ widget_score.name }}" tabindex="-1">
-					&lt;span class="label">{{ widget_score.name }}&lt;/span>
-					&lt;span class="value">{{ widget_score.score }}&lt;/span>
+				&lt;a href="#{{ property }}" tabindex="-1">
+					&lt;span class="label">{{ property | capitalize }}&lt;/span>
+					&lt;span class="value">{{ value.score }}&lt;/span>
 				&lt;/a>
 			&lt;/li>
 			{% endfor %}
@@ -163,20 +220,74 @@ Widget score (preview)
 	&lt;/div>
 	&lt;div class="score-summary">
 		&lt;ul>
-			{% for points in item.positive_points %}
-				&lt;li>&lt;span class="icon icon-plus">&lt;/span>{{ points.point }}&lt;/li>
+			{% for goodText in content.widgetScore.summary.good %}
+				&lt;li>&lt;span class="icon icon-plus">&lt;/span>{{ goodText }}&lt;/li>
 			{% endfor %}
 		&lt;/ul>
 		&lt;ul>
-			{% for points in item.negative_points %}
-				&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ points.point }}&lt;/li>
-			{% endfor %}  
+			{% for badText in content.widgetScore.summary.bad %}
+				&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ badText }}&lt;/li>
+			{% endfor %}
 		&lt;/ul>
 	&lt;/div>
 &lt;/div>
 &lt;!-- /widget-score -->
 {% endmacro %}
-</code></pre>
+
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Business model 1.5 TDI',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		gaugeScore: '4',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ widgetScore(content) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_widget-score.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_widget-score.html" download="_widget-score.html" title="download HTML"></a></li>
@@ -195,8 +306,8 @@ Widget score (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* widget-score component */
 

@@ -62,7 +62,10 @@ Featured (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Featured</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `featured` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,43 +82,65 @@ Featured (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			{% macro featured(title, reviews) %}
+			{% macro featured(content) %}
 <!-- featured -->
 <div class="featured" data-component="featured">
-    <section class="max-width-centered">
-      <h1>{{ title }}</h1>
-      {% for review in reviews %}
-      <a href="{{ content.url }}" class="featured-content">
-        <img src="{{ review.summary_visual|imageSize(900,200) }}" alt="{{ review.title + ' ' + review.sub_title }}"/>
+	<section class="max-width-centered">
+		<h1>{{ content.mainTitle }}</h1>
+		<a href="{{ content.url }}" class="featured-content">
+			<img src="{{ content.visual }}" alt="{{ content.title + ' ' + content.subTitle }}"/>
 
-        <div class="featured-content-wrapper">
-          <time>{{ review.date }}</time>
-          <h2>
-            {{ review.title }}
-            <span class="subtitle">{{ review.sub_title }}</span>
-          </h2>
-          <div class="featured-score">
-            <span class="icon icon-gauge{{ review.gauge_score }}"></span>
-            {{ review.score }}
-          </div>
-          <hr/>
-          <ul>
-            {% for points in review.positive_points %}
-              <li><span class="icon icon-plus-yellow"></span>{{ points.point }}</li>
-            {% endfor %}
-          </ul>
-          <ul>
-            {% for points in review.negative_points %}
-              <li><span class="icon icon-min-red"></span>{{ points.point }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-      </a>
-      {% endfor %}
-    </section>
-  </div>
+			<div class="featured-content-wrapper">
+				<time>{{ content.date }}</time>
+				<h2>
+					{{ content.title }}
+					<span class="subtitle">{{ content.subTitle }}</span>
+				</h2>
+				<div class="featured-score">
+					<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
+					{{ content.score}}
+				</div>
+				<hr/>
+				<ul>
+					{% for goodText in content.summary.good %}
+					<li><span class="icon icon-plus-yellow"></span>{{ goodText }}</li>
+					{% endfor %}
+				</ul><!--
+				--><ul>
+					{% for badText in content.summary.bad %}
+					<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</a>
+	</section>
+</div>
 <!-- /featured -->
 {% endmacro %}
+
+{%
+	set featuredContent = {
+		mainTitle: 'NIEUW DIEPTEPUNT',
+		title: 'Land Rover Evoque',
+		subTitle: 'Si4 4WD Dynamic',
+		score: '2,2',
+		date: '02-02-2014',
+		url: '#',
+		visual: pathToAssets + 'images/home/home-featured.jpg',
+		gaugeScore: '4',
+		summary: {
+			good: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing',
+				'Eliti vestibulum consequat lobortis justo vitae.'
+			],
+			bad: [
+				'Vollit vestibulum consequat lobortis justo posuere.',
+				'Bestibulum consequat mauris eget diam risus.'
+			]
+		}
+	}
+%}
+{{ featured(featuredContent) }}
 
 		</div>
 		<div class="app-guide-preview-bottom">
@@ -143,43 +168,65 @@ Featured (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>{% macro featured(title, reviews) %}
+				<pre class="language-markup"><code>{% macro featured(content) %}
 &lt;!-- featured -->
 &lt;div class="featured" data-component="featured">
-    &lt;section class="max-width-centered">
-      &lt;h1>{{ title }}&lt;/h1>
-      {% for review in reviews %}
-      &lt;a href="{{ content.url }}" class="featured-content">
-        &lt;img src="{{ review.summary_visual|imageSize(900,200) }}" alt="{{ review.title + ' ' + review.sub_title }}"/>
+	&lt;section class="max-width-centered">
+		&lt;h1>{{ content.mainTitle }}&lt;/h1>
+		&lt;a href="{{ content.url }}" class="featured-content">
+			&lt;img src="{{ content.visual }}" alt="{{ content.title + ' ' + content.subTitle }}"/>
 
-        &lt;div class="featured-content-wrapper">
-          &lt;time>{{ review.date }}&lt;/time>
-          &lt;h2>
-            {{ review.title }}
-            &lt;span class="subtitle">{{ review.sub_title }}&lt;/span>
-          &lt;/h2>
-          &lt;div class="featured-score">
-            &lt;span class="icon icon-gauge{{ review.gauge_score }}">&lt;/span>
-            {{ review.score }}
-          &lt;/div>
-          &lt;hr/>
-          &lt;ul>
-            {% for points in review.positive_points %}
-              &lt;li>&lt;span class="icon icon-plus-yellow">&lt;/span>{{ points.point }}&lt;/li>
-            {% endfor %}
-          &lt;/ul>
-          &lt;ul>
-            {% for points in review.negative_points %}
-              &lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ points.point }}&lt;/li>
-            {% endfor %}
-          &lt;/ul>
-        &lt;/div>
-      &lt;/a>
-      {% endfor %}
-    &lt;/section>
-  &lt;/div>
+			&lt;div class="featured-content-wrapper">
+				&lt;time>{{ content.date }}&lt;/time>
+				&lt;h2>
+					{{ content.title }}
+					&lt;span class="subtitle">{{ content.subTitle }}&lt;/span>
+				&lt;/h2>
+				&lt;div class="featured-score">
+					&lt;span class="icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
+					{{ content.score}}
+				&lt;/div>
+				&lt;hr/>
+				&lt;ul>
+					{% for goodText in content.summary.good %}
+					&lt;li>&lt;span class="icon icon-plus-yellow">&lt;/span>{{ goodText }}&lt;/li>
+					{% endfor %}
+				&lt;/ul>&lt;!--
+				-->&lt;ul>
+					{% for badText in content.summary.bad %}
+					&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ badText }}&lt;/li>
+					{% endfor %}
+				&lt;/ul>
+			&lt;/div>
+		&lt;/a>
+	&lt;/section>
+&lt;/div>
 &lt;!-- /featured -->
 {% endmacro %}
+
+{%
+	set featuredContent = {
+		mainTitle: 'NIEUW DIEPTEPUNT',
+		title: 'Land Rover Evoque',
+		subTitle: 'Si4 4WD Dynamic',
+		score: '2,2',
+		date: '02-02-2014',
+		url: '#',
+		visual: pathToAssets + 'images/home/home-featured.jpg',
+		gaugeScore: '4',
+		summary: {
+			good: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing',
+				'Eliti vestibulum consequat lobortis justo vitae.'
+			],
+			bad: [
+				'Vollit vestibulum consequat lobortis justo posuere.',
+				'Bestibulum consequat mauris eget diam risus.'
+			]
+		}
+	}
+%}
+{{ featured(featuredContent) }}
 </code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_featured.html" title="view source HTML"></a></li>
@@ -199,8 +246,8 @@ Featured (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* featured component */
 

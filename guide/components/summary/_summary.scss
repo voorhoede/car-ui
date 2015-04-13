@@ -1,0 +1,54 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* summary component */
+
+.summary {
+	margin-top: -$intro-summary-overlap;
+
+	h1 {
+		color: $black;
+	}
+
+	.summary-content {
+		margin-bottom: 80px;
+		text-align: center;
+
+		@include min-screen($break-small) {
+			text-align: left;
+		}
+
+		h2 {
+			@include header-font();
+
+			font-size: 25px;
+			text-align: left;
+		}
+
+		img {
+			vertical-align: bottom;
+			width: 100%;
+		}
+
+		p {
+			text-align: left;
+		}
+
+		.inline-visual {
+			width: auto;
+			max-width: 100%;
+
+			@include min-screen($break-small) {
+				float: right;
+				padding: 5px 0 30px 30px;
+			}
+		}
+	}
+
+	.summary-text {
+		@include clearfix;
+
+		background-color: $white;
+		padding: 30px 40px;
+	}
+}

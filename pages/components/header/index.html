@@ -62,7 +62,10 @@ Header (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Header</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `header` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,7 +82,49 @@ Header (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			
+			{% macro header(navigation) %}
+<!-- header -->
+<header class="header" data-component="header">
+	<div class="header-content">
+		<div class="logo-area">
+			<a href="/" class="logo icon-car-ux-logo">CAR UI</a>
+		</div>
+		<nav>
+			<ul>
+				{% for item in navigation %}
+				<li class="{% if item.active %} active-nav-item {% endif %}">
+					<a href="{{ item.href }}">{{ item.label }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+	<div class="header-background-left"></div>
+	<div class="header-background-right"></div>
+</header>
+<!-- /header -->
+{% endmacro %}
+
+{%
+	set navigation = [
+		{
+			label: 'Home',
+			href: '/modules/views/home/home.html',
+			active: false
+		},
+		{
+			label: 'Reviews',
+			href: '/modules/views/reviews/reviews.html',
+			active: true
+		},
+		{
+			label: 'About<span class="nav-text-large">&nbsp;Car UI</span>',
+			href: '#over',
+			active: false
+		}
+	]
+%}
+{{ header(navigation) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -97,6 +142,65 @@ Header (preview)
 		
 
 		
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML 
+<a href="#section-code-html"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>{% macro header(navigation) %}
+&lt;!-- header -->
+&lt;header class="header" data-component="header">
+	&lt;div class="header-content">
+		&lt;div class="logo-area">
+			&lt;a href="/" class="logo icon-car-ux-logo">CAR UI&lt;/a>
+		&lt;/div>
+		&lt;nav>
+			&lt;ul>
+				{% for item in navigation %}
+				&lt;li class="{% if item.active %} active-nav-item {% endif %}">
+					&lt;a href="{{ item.href }}">{{ item.label }}&lt;/a>
+				&lt;/li>
+				{% endfor %}
+			&lt;/ul>
+		&lt;/nav>
+	&lt;/div>
+	&lt;div class="header-background-left">&lt;/div>
+	&lt;div class="header-background-right">&lt;/div>
+&lt;/header>
+&lt;!-- /header -->
+{% endmacro %}
+
+{%
+	set navigation = [
+		{
+			label: 'Home',
+			href: '/modules/views/home/home.html',
+			active: false
+		},
+		{
+			label: 'Reviews',
+			href: '/modules/views/reviews/reviews.html',
+			active: true
+		},
+		{
+			label: 'About&lt;span class="nav-text-large">&nbsp;Car UI&lt;/span>',
+			href: '#over',
+			active: false
+		}
+	]
+%}
+{{ header(navigation) }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_header.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_header.html" download="_header.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		
 
 		
 		<section id="section-code-css">
@@ -108,8 +212,8 @@ Header (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* header component */
 

@@ -1,0 +1,25 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* comments component */
+
+.comments {
+	background-color: $light-grey;
+
+	.comments-section {
+		padding-top: 30px;
+	}
+
+	.disqus {
+		background-color: $white;
+		padding: 30px;
+	}
+
+	h1 {
+		margin-left: 20px;
+
+		@include min-screen($break-large) {
+			margin-left: 0;
+		}
+	}
+}

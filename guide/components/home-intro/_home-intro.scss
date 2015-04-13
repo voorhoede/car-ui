@@ -1,0 +1,61 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* home-intro component */
+$home-intro-break-small: 680px;
+
+.home-intro {
+	position: relative;
+	width: 100%;
+	padding-top: 0;
+	overflow: hidden;
+	background-color: $light-grey;
+	@include min-screen($break-large) {
+		padding-top: 30px;
+	}
+
+	.home-intro-background {
+		display: block;
+		margin: 0 auto;
+	}
+	.home-intro-content {
+		position: relative;
+		width: 100%;
+		margin-top: -190px;
+		padding-top: 30px;
+		background-color: $yellow;
+		text-align: center;
+		@include clearfix;
+		@include min-screen($home-intro-break-small) {
+			position: absolute;
+			left: 50%;
+			bottom: 25px;
+			margin-top: 0;
+			margin-left: -320px;
+			max-width: 640px;
+		}
+		h1 {
+			padding-right: 30px;
+			padding-left: 30px;
+			padding-bottom: 0;
+		}
+		p {
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+		.about-button {
+			float: right;
+		}
+	}
+	.triangle {
+		@include min-screen($break-extra-small) {
+			width: 0;
+			height: 0;
+			margin-right: auto;
+			margin-left: auto;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-top: 25px solid $yellow;
+		}
+	}
+}

@@ -1,0 +1,39 @@
+{% macro summaryBlock(content, visualOnBottom = true) %}
+<!-- summary -->
+<div class="summary" data-component="summary">
+	<section class="max-width-centered">
+		{% if visualOnBottom %}
+		<h1>THE TEST</h1>
+		{% endif %}
+		<div class="summary-content">
+			{% if visualOnBottom == false %}
+			<img src="{{ content.visual }}" alt="{{ content.title }}"/>
+			{% endif %}
+			<div class="summary-text">
+				<h2>{{ content.title }}</h2>
+				{% if content.inlineVisual %}
+				<img class="inline-visual" src="{{ content.inlineVisual }}" alt="{{ content.title }}" />
+				{% endif %}
+				<p>{{ content.text }}</p>
+			</div>
+			{% if visualOnBottom %}
+			<img src="{{ content.visual }}" alt="{{ content.title }}"/>
+			{% endif %}
+		</div>
+	</section>
+</div>
+<!-- /summary -->
+{% endmacro %}
+
+{%
+	set summaryContent = {
+		title: 'De intrede van de schermen',
+		text: 'De laatste paar jaren heeft het digitale scherm zijn weg gevonden in het dashboard van de auto. Eerst om informatie van de boordcomputer weer te geven tussen de primaire klokken. Maar later ook in de midden-console voor navigatie en muziek. En in sommige merken groeien deze schermen steeds meer naar elkaar toe. Maar ze herbergen ook steeds meer functionaliteiten nu er meer techniek in de auto komt en de producenten de fysieke knoppen in het dashboard steeds vaker willen laten verdwijnen. Alle kennis die de afgelopen 100 jaar opgedaan is in het ontwerpen van het dashboard kan dan ook uit het raam gegooid worden. Want digitale user interface design is toch een heel ander vakgebied, met hele andere oplossingen voor dezelfde problemen dan in de fysieke wereld.
+			<br/><br/>En hiermee hebben de auto producenten zich eigenlijk een heleboel extra verantwoordelijkheid en uitdagingen op de hals genomen. En laten we wel zijn, die hebben ze nog niet opgelost. Vaak stappen ze ook in de val van de visuele mogelijkheden die de schermen nu bieden en pakken ze daarmee flink uit. Om tegelijkertijd de functionaliteit, identiteit en het intuïtieve gedrag uit het oog te verliezen. In veel gevallen is ook de klasse uitstraling van het merk en model niet meer terug te vinden in de digitale UI. En dit zie je vaak in het C, D en E segment. De interfaces lijken door hele andere afdelingen gemaakt te zijn dan de mensen die het interieur hebben ontworpen. Ze vormen geen geheel met de design taal van het interieur en het exterieur. Ze komen vaak erg technisch over, zitten hiërarchisch slecht in elkaar en ook hebben de schermen een lage kwaliteit.
+			<br/><br/>Dit alles zorgt er voor dat de problemen eigenlijk alleen nog maar groter worden en dat de gemiddelde bestuurder een flinke leercurve nodig heeft om zijn of haar eigen auto ten volle te kunnen gebruiken. Maar ook dat het gevaarlijke situaties op kan leveren tijdens het rijden omdat top-taken niet logisch te vinden of te bedienen zijn.
+			<br/><br/>Ook kan het een nadelige uitwerking hebben op de merk beleving als een merk pretendeert ‘premium’ te zijn, maar de interface onverzorgd en goedkoop over komt. De emotie, esthetiek, finesse en het spelen met het lijnenspel dat komt kijken bij het ontwerpen van een auto, wordt in de meeste gevallen duidelijk niet toegepast in het ontwerpen van de interfaces.',
+		visual: pathToAssets + 'images/opel-insignia-nl/opel-insignia-summary.jpg',
+		inlineVisual: pathToAssets + 'images/about/1.jpg'
+	}
+%}
+{{ summaryBlock(summaryContent) }}

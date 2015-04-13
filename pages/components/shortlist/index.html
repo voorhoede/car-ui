@@ -62,7 +62,10 @@ Shortlist (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Shortlist</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `shortlist` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,50 +82,104 @@ Shortlist (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			{% macro list(title, reviews) %}
+			{% macro shortlist(content) %}
 <!-- shortlist -->
 <div class="shortlist" data-component="shortlist">
 	<section class="max-width-centered">
-		<h1>{{ title }}</h1>
-		{% for review in reviews %}
-			{{ item(review) }}
-      	{% endfor %}
+		<h1>{{ content.mainTitle }}</h1>
+		{% for product in content.products %}<!--
+		--><a class="shortlist-product" href="{{ product.url }}">
+		<img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
+		<div class="equalHeight" data-equal-height>
+			<div class="shortlist-title">
+				<h2>{{ product.title }}<span>{{ product.subTitle }}</span></h2>
+				<span class="shortlist-score">{{ product.score }}</span>
+			</div>
+			<div class="shortlist-summary">
+				<hr/>
+				<ul>
+					{% for goodText in product.summary.good %}
+					<li><span class="icon icon-plus-yellow"></span>{{ goodText }}</li>
+					{% endfor %}
+				</ul>
+				<ul>
+					{% for badText in product.summary.bad %}
+					<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+					{% endfor %}
+				</ul>
+				<hr/>
+				<time>{{ product.date }}</time>
+			</div>
+		</div>
+	</a><!--
+	-->{% endfor %}
 	</section>
 </div>
 <!-- /shortlist -->
 {% endmacro %}
 
-{% macro item(review) %}
-  	<a href="{{ url(review) }}" class="shortlist-product">
-    	<img src="{{ review.related_visual|imageSize(280,200) }}" alt="{{ review.title + ' ' + review.subTitle }}"/>
-
-        <div class="equalHeight" data-equal-height>
-			<div class="shortlist-title">
-	          <h2>
-	            {{ review.title }}
-	            <span>{{ review.sub_title }}</span>
-	          </h2>
-	          <span class="shortlist-score">{{ review.score }}</span>
-	        </div>
-	        <div class="shortlist-summary">
-				<hr/>
-				<ul>
-				{% for points in review.positive_points %}
-					<li><span class="icon icon-plus-yellow"></span>{{ points.point }}</li>
-				{% endfor %}
-				</ul>
-				<ul>
-				{% for points in review.negative_points %}
-					<li><span class="icon icon-min-red"></span>{{ points.point }}</li>
-				{% endfor %}
-				</ul>
-				<hr>
-				<time>{{ review.date }}</time>
-        	</div>
-        </div>
-  	</a>
-{% endmacro %}
-
+{%
+	set shortlistContent = {
+		mainTitle: 'DE TOP BESTE INTERFACES',
+		products: [
+			{
+				title: 'Nissan Quashqai Tekna Opique',
+				subTitle: 'Si4 4WD Dynamic',
+				score: '4.5',
+				visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Opel Insignia',
+				subTitle: 'Business Edition',
+				score: '2',
+				visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Citroën C4 Picasso',
+				subTitle: 'Business Edition',
+				score: '5.5',
+				visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			}
+		]
+	}
+%}
+{{ shortlist(shortlistContent) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -149,50 +206,104 @@ Shortlist (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>{% macro list(title, reviews) %}
+				<pre class="language-markup"><code>{% macro shortlist(content) %}
 &lt;!-- shortlist -->
 &lt;div class="shortlist" data-component="shortlist">
 	&lt;section class="max-width-centered">
-		&lt;h1>{{ title }}&lt;/h1>
-		{% for review in reviews %}
-			{{ item(review) }}
-      	{% endfor %}
+		&lt;h1>{{ content.mainTitle }}&lt;/h1>
+		{% for product in content.products %}&lt;!--
+		-->&lt;a class="shortlist-product" href="{{ product.url }}">
+		&lt;img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
+		&lt;div class="equalHeight" data-equal-height>
+			&lt;div class="shortlist-title">
+				&lt;h2>{{ product.title }}&lt;span>{{ product.subTitle }}&lt;/span>&lt;/h2>
+				&lt;span class="shortlist-score">{{ product.score }}&lt;/span>
+			&lt;/div>
+			&lt;div class="shortlist-summary">
+				&lt;hr/>
+				&lt;ul>
+					{% for goodText in product.summary.good %}
+					&lt;li>&lt;span class="icon icon-plus-yellow">&lt;/span>{{ goodText }}&lt;/li>
+					{% endfor %}
+				&lt;/ul>
+				&lt;ul>
+					{% for badText in product.summary.bad %}
+					&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ badText }}&lt;/li>
+					{% endfor %}
+				&lt;/ul>
+				&lt;hr/>
+				&lt;time>{{ product.date }}&lt;/time>
+			&lt;/div>
+		&lt;/div>
+	&lt;/a>&lt;!--
+	-->{% endfor %}
 	&lt;/section>
 &lt;/div>
 &lt;!-- /shortlist -->
 {% endmacro %}
 
-{% macro item(review) %}
-  	&lt;a href="{{ url(review) }}" class="shortlist-product">
-    	&lt;img src="{{ review.related_visual|imageSize(280,200) }}" alt="{{ review.title + ' ' + review.subTitle }}"/>
-
-        &lt;div class="equalHeight" data-equal-height>
-			&lt;div class="shortlist-title">
-	          &lt;h2>
-	            {{ review.title }}
-	            &lt;span>{{ review.sub_title }}&lt;/span>
-	          &lt;/h2>
-	          &lt;span class="shortlist-score">{{ review.score }}&lt;/span>
-	        &lt;/div>
-	        &lt;div class="shortlist-summary">
-				&lt;hr/>
-				&lt;ul>
-				{% for points in review.positive_points %}
-					&lt;li>&lt;span class="icon icon-plus-yellow">&lt;/span>{{ points.point }}&lt;/li>
-				{% endfor %}
-				&lt;/ul>
-				&lt;ul>
-				{% for points in review.negative_points %}
-					&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ points.point }}&lt;/li>
-				{% endfor %}
-				&lt;/ul>
-				&lt;hr>
-				&lt;time>{{ review.date }}&lt;/time>
-        	&lt;/div>
-        &lt;/div>
-  	&lt;/a>
-{% endmacro %}
-</code></pre>
+{%
+	set shortlistContent = {
+		mainTitle: 'DE TOP BESTE INTERFACES',
+		products: [
+			{
+				title: 'Nissan Quashqai Tekna Opique',
+				subTitle: 'Si4 4WD Dynamic',
+				score: '4.5',
+				visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Opel Insignia',
+				subTitle: 'Business Edition',
+				score: '2',
+				visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Citroën C4 Picasso',
+				subTitle: 'Business Edition',
+				score: '5.5',
+				visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			}
+		]
+	}
+%}
+{{ shortlist(shortlistContent) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_shortlist.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_shortlist.html" download="_shortlist.html" title="download HTML"></a></li>
@@ -211,13 +322,12 @@ Shortlist (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* shortlist component */
 
 .shortlist {
-	@include clearfix();
 	background-color: $light-grey;
 	padding: 0 30px 0 30px;
 
@@ -233,11 +343,10 @@ Shortlist (preview)
 		// Show only the first two items
 		&:nth-of-type(1),
 		&:nth-of-type(2) {
-			display: block;
+			display: inline-block;
 		}
 
 		@include min-screen($break-small) {
-			float: left;
 			width: 48%;
 
 			&:nth-of-type(1) {
@@ -246,8 +355,7 @@ Shortlist (preview)
 		}
 
 		@include min-screen($break-large) {
-			display: block; // Show all the items
-			float: left;
+			display: inline-block; // Show all the items
 			width: 31.33%;
 			margin-left: 3%;
 

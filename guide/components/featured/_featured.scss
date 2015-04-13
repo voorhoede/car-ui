@@ -1,0 +1,158 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* featured component */
+
+.featured {
+	padding: 0 30px;
+
+	.featured-content {
+		@include transition(box-shadow .2s ease-out);
+		display: block;
+		position: relative;
+
+		&:hover,
+		&:focus {
+			@include transition(box-shadow .2s ease-out);
+			@include box-shadow(0 0 15px 1px $shadow-color);
+
+			.featured-score,
+			li {
+				color: $black;
+			}
+			img {
+				@include transition(box-shadow .2s ease-out);
+				@include box-shadow(none);
+
+				@include min-screen($break-small) {
+					@include box-shadow(0 5px 10px 1px $shadow-color);
+				}
+			}
+		}
+
+		.featured-content-wrapper {
+			background-color: $white;
+			padding: 25px 30px 0 30px;
+
+			@include min-screen($break-small) {
+				margin-bottom: 110px;
+			}
+
+			@include min-screen(700px) {
+				margin-bottom: 110px;
+			}
+
+			@include min-screen(790px) {
+				margin-bottom: 160px;
+			}
+
+			@include min-screen($break-large) {
+				margin-bottom: 180px;
+			}
+		}
+
+		time {
+
+			font-size: 12px;
+			color: $dark-grey;
+		}
+
+		h2 {
+			@include header-font();
+
+			margin: 5px 0 10px 0;
+
+			.subtitle {
+				@include normal-font();
+
+				display: block;
+				font-size: 16px;
+				margin-top: 5px;
+			}
+		}
+
+		ul {
+			@include normal-font();
+
+			list-style-type: none;
+			padding: 0 0 10px 0;
+			margin: 0;
+
+			@include min-screen($break-small) {
+				display: inline-block;
+				vertical-align: top;
+				width: 50%;
+				padding-top: 20px;
+
+				li {
+					min-height: 36px;
+				}
+
+				&:first-of-type {
+					li {
+						padding-right: 20px;
+					}
+				}
+			}
+
+			&:first-of-type {
+				padding-top: 20px;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+				padding-bottom: 10px;
+			}
+
+			li {
+				position: relative;
+				margin-bottom: 15px;
+				padding-left: 30px;
+
+				.icon {
+					position: absolute;
+					left: 0;
+					top: 1px;
+					margin-right: 20px;
+				}
+			}
+		}
+
+		.featured-score {
+			@include header-font();
+
+			background-color: $yellow;
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: 7px 9px;
+			min-width: 92px;
+			font-size: 30px;
+
+			.icon-gauge1,
+			.icon-gauge2,
+			.icon-gauge3,
+			.icon-gauge4,
+			.icon-gauge5 {
+				width: 37px;
+				height: 37px;
+				vertical-align: top;
+			}
+		}
+
+		img {
+			@include transition(box-shadow .2s ease-out);
+			vertical-align: bottom;
+			width: 100%;
+
+			@include min-screen($break-small) {
+				position: absolute;
+				top: 100%;
+				left: 0;
+			}
+		}
+	}
+	a.featured-content {
+		border: none;
+	}
+}

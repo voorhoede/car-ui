@@ -62,7 +62,10 @@ Detail intro (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Detail intro</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `detail-intro` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,43 +82,127 @@ Detail intro (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<!-- intro -->
-{% macro detailIntro(item) %}
+			{% macro detailIntro(content) %}
 {% import "components/widget-score/_widget-score.html" as widgetScore %}
-<div class="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}">
-	<img itemprop="image" class="intro-background" src="{{ item.background_image|imageSize(960,500) }}" alt="{{ item.background_image_alt_text }}" />
+<!-- intro -->
+<div class="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}">
+	<img itemprop="image" class="intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
 	<section class="intro-content max-width-centered" data-intro-section>
 		<article class="intro-text" data-intro-text>
 			<header>
-				{% if item.widget_score %}
-				<img class="intro-title-image" src="{{ item.title_image|imageSize(100,50) }}" alt="{{ item.title_image_alt_text }}" />
+				{% if content.widgetScore %}
+				<img class="intro-title-image" src="{{ content.titleImage }}" alt="{{ content.titleImageAlt }}" />
 				{% endif %}
 				<h1 itemprop="name">
-					{{ item.title }}
-					<span class="subtitle">{{ item.sub_title }}</span>
+					{{ content.title }}
+					<span class="subtitle">{{ content.subtitle }}</span>
 				</h1>
 			</header>
-			{% if item.inline_visual %}
-			<img class="inline-visual" src="{{ item.inline_visual|imageSize(500,500) }}" alt="{{ item.title }}" />
+			{% if content.inlineVisual %}
+			<img class="inline-visual" src="{{ content.inlineVisual }}" alt="{{ content.title }}" />
 			{% endif %}
 			<p itemprop="description">
-				{{ item.description|safe }}
+				{{ content.description }}
 			</p>
-		</article>{% if item.widget_score %}<!--
-		--><div class="widget-score-block">
-			{{ widgetScore.widgetScore(item) }}
+		</article>
+		<div class="widget-score-block">
+			<div class="widget-score" data-component="widget-score">
+	<div class="score-overview" data-widget-score-overview>
+		<header>
+			<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
+			<span class="score">{{ content.widgetScore.score }}</span>
+			<span class="icon icon-arrow-down" data-score-header-arrow></span>
+		</header>
+		<ul>
+			{% for property, value in content.widgetScore.scoreDetails %}
+			<li>
+				<a href="#{{ property }}" tabindex="-1">
+					<span class="label">{{ property | capitalize }}</span>
+					<span class="value">{{ value.score }}</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="score-summary">
+		<ul>
+			{% for goodText in content.widgetScore.summary.good %}
+				<li><span class="icon icon-plus"></span>{{ goodText }}</li>
+			{% endfor %}
+		</ul>
+		<ul>
+			{% for badText in content.widgetScore.summary.bad %}
+				<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
 		</div><!--
 		--><aside class="social-buttons" data-social-buttons>
 			<p>Share this test on</p>
 			<a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]={{ item.url | url_encode }}&amp;p[title]=Car%20UI%20-%20{{ item.title }}%20{{ item.sub_title }}&amp;p[summary]={{ item.description | url_encode }}" class="social-button icon-facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=600');return false;">Facebook</a>
 			<a target="_blank" href="http://twitter.com/share?text=Car UI - Review: {{ item.twitter | url_encode }}&amp;url={{ item.url | url_encode }}" class="social-button icon-twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=438,width=600');return false;">Twitter</a>
 			<a target="_blank" class="social-button icon-gplus" href="https://plus.google.com/share?url={{ item.url }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google Plus</a>
-		</aside>{% endif %}
+		</aside>
 	</section>
 </div>
 <!-- /intro -->
 {% endmacro %}
 
+{# this will only output in component guide #}
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Full Electric',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ detailIntro(content) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -142,43 +229,127 @@ Detail intro (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;!-- intro -->
-{% macro detailIntro(item) %}
+				<pre class="language-markup"><code>{% macro detailIntro(content) %}
 {% import "components/widget-score/_widget-score.html" as widgetScore %}
-&lt;div class="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if item.widget_score %}detail-intro{% else %}detail-intro-text{% endif %}">
-	&lt;img itemprop="image" class="intro-background" src="{{ item.background_image|imageSize(960,500) }}" alt="{{ item.background_image_alt_text }}" />
+&lt;!-- intro -->
+&lt;div class="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}">
+	&lt;img itemprop="image" class="intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
 	&lt;section class="intro-content max-width-centered" data-intro-section>
 		&lt;article class="intro-text" data-intro-text>
 			&lt;header>
-				{% if item.widget_score %}
-				&lt;img class="intro-title-image" src="{{ item.title_image|imageSize(100,50) }}" alt="{{ item.title_image_alt_text }}" />
+				{% if content.widgetScore %}
+				&lt;img class="intro-title-image" src="{{ content.titleImage }}" alt="{{ content.titleImageAlt }}" />
 				{% endif %}
 				&lt;h1 itemprop="name">
-					{{ item.title }}
-					&lt;span class="subtitle">{{ item.sub_title }}&lt;/span>
+					{{ content.title }}
+					&lt;span class="subtitle">{{ content.subtitle }}&lt;/span>
 				&lt;/h1>
 			&lt;/header>
-			{% if item.inline_visual %}
-			&lt;img class="inline-visual" src="{{ item.inline_visual|imageSize(500,500) }}" alt="{{ item.title }}" />
+			{% if content.inlineVisual %}
+			&lt;img class="inline-visual" src="{{ content.inlineVisual }}" alt="{{ content.title }}" />
 			{% endif %}
 			&lt;p itemprop="description">
-				{{ item.description|safe }}
+				{{ content.description }}
 			&lt;/p>
-		&lt;/article>{% if item.widget_score %}&lt;!--
-		-->&lt;div class="widget-score-block">
-			{{ widgetScore.widgetScore(item) }}
+		&lt;/article>
+		&lt;div class="widget-score-block">
+			&lt;div class="widget-score" data-component="widget-score">
+	&lt;div class="score-overview" data-widget-score-overview>
+		&lt;header>
+			&lt;span class="icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
+			&lt;span class="score">{{ content.widgetScore.score }}&lt;/span>
+			&lt;span class="icon icon-arrow-down" data-score-header-arrow>&lt;/span>
+		&lt;/header>
+		&lt;ul>
+			{% for property, value in content.widgetScore.scoreDetails %}
+			&lt;li>
+				&lt;a href="#{{ property }}" tabindex="-1">
+					&lt;span class="label">{{ property | capitalize }}&lt;/span>
+					&lt;span class="value">{{ value.score }}&lt;/span>
+				&lt;/a>
+			&lt;/li>
+			{% endfor %}
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="score-summary">
+		&lt;ul>
+			{% for goodText in content.widgetScore.summary.good %}
+				&lt;li>&lt;span class="icon icon-plus">&lt;/span>{{ goodText }}&lt;/li>
+			{% endfor %}
+		&lt;/ul>
+		&lt;ul>
+			{% for badText in content.widgetScore.summary.bad %}
+				&lt;li>&lt;span class="icon icon-min-red">&lt;/span>{{ badText }}&lt;/li>
+			{% endfor %}
+		&lt;/ul>
+	&lt;/div>
+&lt;/div>
 		&lt;/div>&lt;!--
 		-->&lt;aside class="social-buttons" data-social-buttons>
 			&lt;p>Share this test on&lt;/p>
 			&lt;a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]={{ item.url | url_encode }}&amp;p[title]=Car%20UI%20-%20{{ item.title }}%20{{ item.sub_title }}&amp;p[summary]={{ item.description | url_encode }}" class="social-button icon-facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=600');return false;">Facebook&lt;/a>
 			&lt;a target="_blank" href="http://twitter.com/share?text=Car UI - Review: {{ item.twitter | url_encode }}&amp;url={{ item.url | url_encode }}" class="social-button icon-twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=438,width=600');return false;">Twitter&lt;/a>
 			&lt;a target="_blank" class="social-button icon-gplus" href="https://plus.google.com/share?url={{ item.url }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google Plus&lt;/a>
-		&lt;/aside>{% endif %}
+		&lt;/aside>
 	&lt;/section>
 &lt;/div>
 &lt;!-- /intro -->
 {% endmacro %}
-</code></pre>
+
+{# this will only output in component guide #}
+{%
+	set content = {
+		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
+		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImageAlt: 'BMW i3 dashboard',
+		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImageAlt: 'BMW i3 small',
+		title: 'BMW i3',
+		subtitle: 'Full Electric',
+		description: 'Introtekst over de nieuwe BMW i3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa orem psum dolor sit.',
+		testTagline: 'Getest op 12 juni 2014 door Hylke van Maaren en Miranda Schenkel',
+		widgetScore: {
+			score: '8,5',
+			scoreDetails: {
+				uitstraling: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				contrast: {
+					score: '5',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				focus: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				usability: {
+					score: '4',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				},
+				features: {
+					score: '3',
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+				}
+			},
+			summary: {
+				good: [
+					'De UI is contrastrijk',
+					'Hardware knop'
+				],
+				bad: [
+					'De inputmethode',
+					'Navigatie viel tegen'
+				]
+			}
+		},
+		socialSharing: {
+			twitter: 'Twitter - share text',
+			facebook: 'Facebook - share text'
+		}
+	}
+%}
+{{ detailIntro(content) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_detail-intro.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_detail-intro.html" download="_detail-intro.html" title="download HTML"></a></li>
@@ -197,8 +368,8 @@ Detail intro (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* intro component */
 

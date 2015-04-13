@@ -62,7 +62,10 @@ Highlight (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Highlight</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `highlight` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,21 +82,32 @@ Highlight (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			<!-- highlight -->
+			{% macro highlightBlock(content) %}
+<!-- highlight -->
 <div class="highlight" data-component="highlight">
 	<section class="max-width-centered">
 		<h1>REMARKABLE</h1>
 		<div class="highlight-content">
-			<img src="{{ item.pathToUploads }}{{ item.highlight_image|imageSize(900,470) }}" alt="{{ item.highlight_title }}"/>
+			<img src="{{ content.visual }}" alt="{{ content.title }}"/>
 			<div class="highlight-text">
-				<h2>{{ item.highlight_title }}</h2>
-				<p>{{ item.highlight_text|safe }}</p>
+				<h2>{{ content.title }}</h2>
+				<p>{{ content.text }}</p>
 			</div>
 		</div>
 	</section>
 </div>
 <!-- /highlight -->
+{% endmacro %}
 
+{%
+	set highlightContent = {
+		title: 'Kleurgebruik',
+		text: 'Het is logisch dat de kleur blauw gebruikt wordt, maar dit had verder doorgevoerd kunnen worden in de rest van de auto. Verder worden er naast blauw en oranje bijna geen signaalkleuren gebruikt, terwijl die wel in de rest van het interieur gebruikt worden. Een uitzondering hier op zijn de parkeersignalen in het dashboard-schermpje.',
+		visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-highlight.jpg'
+	}
+%}
+
+{{ highlightBlock(highlightContent) }}
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -120,21 +134,32 @@ Highlight (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-markup"><code>&lt;!-- highlight -->
+				<pre class="language-markup"><code>{% macro highlightBlock(content) %}
+&lt;!-- highlight -->
 &lt;div class="highlight" data-component="highlight">
 	&lt;section class="max-width-centered">
 		&lt;h1>REMARKABLE&lt;/h1>
 		&lt;div class="highlight-content">
-			&lt;img src="{{ item.pathToUploads }}{{ item.highlight_image|imageSize(900,470) }}" alt="{{ item.highlight_title }}"/>
+			&lt;img src="{{ content.visual }}" alt="{{ content.title }}"/>
 			&lt;div class="highlight-text">
-				&lt;h2>{{ item.highlight_title }}&lt;/h2>
-				&lt;p>{{ item.highlight_text|safe }}&lt;/p>
+				&lt;h2>{{ content.title }}&lt;/h2>
+				&lt;p>{{ content.text }}&lt;/p>
 			&lt;/div>
 		&lt;/div>
 	&lt;/section>
 &lt;/div>
 &lt;!-- /highlight -->
-</code></pre>
+{% endmacro %}
+
+{%
+	set highlightContent = {
+		title: 'Kleurgebruik',
+		text: 'Het is logisch dat de kleur blauw gebruikt wordt, maar dit had verder doorgevoerd kunnen worden in de rest van de auto. Verder worden er naast blauw en oranje bijna geen signaalkleuren gebruikt, terwijl die wel in de rest van het interieur gebruikt worden. Een uitzondering hier op zijn de parkeersignalen in het dashboard-schermpje.',
+		visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-highlight.jpg'
+	}
+%}
+
+{{ highlightBlock(highlightContent) }}</code></pre>
 				<ul class="app-guide-code-options">
 					<li><a class="app-guide-icon app-guide-icon-code" href="_highlight.html" title="view source HTML"></a></li>
 					<li><a class="app-guide-icon app-guide-icon-download" href="_highlight.html" download="_highlight.html" title="download HTML"></a></li>
@@ -153,8 +178,8 @@ Highlight (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* highlight component */
 

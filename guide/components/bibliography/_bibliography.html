@@ -1,0 +1,51 @@
+{% macro bibliography(content) %}
+<!-- bibliography -->
+<div class="bibliography" data-component="bibliography">
+	<section class="max-width-centered">
+		<h1>{{ content.title }}</h1>
+		<ol>
+			{% for source in content.sources %}
+			<li>
+				{{ loop.index }}:
+				{% if source.label %}
+					{{ source.label }}
+				{% endif %}
+				{% if source.label %}({% endif %}<a rel="nofollow" href="{{ source.url }}" target="_blank">{{ source.url }}</a>{% if source.label %}){% endif %}{% if not loop.last %},{% endif %}
+			</li>
+			{% endfor %}
+		</ol>
+	</section>
+</div>
+<!-- /bibliography -->
+{% endmacro %}
+
+{%
+	set sourceList = {
+		title: 'Sources',
+		sources: [
+			{
+				label: 'History of the automobile',
+				url: 'http://en.wikipedia.org/wiki/History_of_the_automobile'
+			},
+			{
+				label: 'Automotive design',
+				url: 'http://en.wikipedia.org/wiki/Automotive_design'
+			},
+			{
+				label: 'Car design history',
+				url: 'http://www.diseno-art.com/car_design_history.html'
+			},
+			{
+				label: 'What web designers can learn from Google’s Material Design',
+				url: 'http://www.webdesignerdepot.com/2014/10/what-web-designers-can-learn-from-googles-material-design/'
+			},
+			{
+				url: 'http://youtu.be/i3GC4dQ7Cs8?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			},
+			{
+				url: 'http://youtu.be/Vhygzio7oA0?list=FLt5EQDiHorFm9HCLwSSBRRw'
+			}
+		]
+	}
+%}
+{{ bibliography(sourceList) }}

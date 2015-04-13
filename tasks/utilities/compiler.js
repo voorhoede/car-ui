@@ -10,7 +10,7 @@ var nunjucks = require('nunjucks');
         new nunjucks.FileSystemLoader('guide')
     ]);
     var templatesDirectory = 'templates/';
-    var componentsDirectory = 'components/';
+    var componentsDirectory = 'guide/components/';
 
 	function getTemplate (path) {
         return env.getTemplate(path);
@@ -29,7 +29,6 @@ var nunjucks = require('nunjucks');
                 return grunt.file.isDir(templatesDirectory + name);
             });
     }
-
 
 	function getComponents () {
         return fs.readdirSync(componentsDirectory)

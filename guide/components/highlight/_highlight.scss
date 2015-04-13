@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* highlight component */
+
+.highlight {
+	.highlight-content {
+		position: relative;
+
+		h2 {
+			@include header-font();
+
+			font-size: 25px;
+		}
+
+		img {
+			vertical-align: bottom;
+			width: 100%;
+		}
+	}
+
+	.highlight-text {
+		background-color: $white;
+		padding: 30px 25px;
+
+		@include min-screen($break-small) {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 10%;
+			margin: auto;
+			width: 80%;
+		}
+
+		@include min-screen($break-large) {
+			left: 30px;
+			right: auto;
+			width: 60%;
+		}
+	}
+}

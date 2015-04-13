@@ -1,0 +1,26 @@
+{% macro highlightBlock(content) %}
+<!-- highlight -->
+<div class="highlight" data-component="highlight">
+	<section class="max-width-centered">
+		<h1>REMARKABLE</h1>
+		<div class="highlight-content">
+			<img src="{{ content.visual }}" alt="{{ content.title }}"/>
+			<div class="highlight-text">
+				<h2>{{ content.title }}</h2>
+				<p>{{ content.text }}</p>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- /highlight -->
+{% endmacro %}
+
+{%
+	set highlightContent = {
+		title: 'Kleurgebruik',
+		text: 'Het is logisch dat de kleur blauw gebruikt wordt, maar dit had verder doorgevoerd kunnen worden in de rest van de auto. Verder worden er naast blauw en oranje bijna geen signaalkleuren gebruikt, terwijl die wel in de rest van het interieur gebruikt worden. Een uitzondering hier op zijn de parkeersignalen in het dashboard-schermpje.',
+		visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-highlight.jpg'
+	}
+%}
+
+{{ highlightBlock(highlightContent) }}

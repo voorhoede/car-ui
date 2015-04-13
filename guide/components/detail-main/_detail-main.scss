@@ -1,0 +1,20 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* detail-main component */
+
+.detail-main {
+	width: 100%;
+	background-color: $yellow;
+	padding-bottom: 6em;
+
+	h1 {
+		color: $white;
+		margin-top: 60px;
+		margin-left: 20px;
+
+		@include min-screen($break-large) {
+			margin-left: 0;
+		}
+	}
+}

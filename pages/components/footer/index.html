@@ -62,7 +62,10 @@ Footer (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Footer</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		
+		<!--
+Add an optional short description here for `footer` component.
+Or delete this file if not applicable.
+-->
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -79,7 +82,47 @@ Footer (preview)
 			<div class="app-guide-crop-mark"></div>
 		</div>
 		<div class="app-guide-preview">
-			
+			<!-- footer -->
+<footer class="footer" data-component="footer">
+	<div class="max-width-centered">
+		<div class="footer-contact">
+			<h2>Review requests or comments?</h2>
+			<p>
+                We are always open to review requests or comments on the information and reviews on this website.
+
+			</p>
+			<a class="ui-button-secondary" href="mailto:review@carui.info?subject=Car%20UI%20Review%20request%20/%20feedback">
+				Email us
+			</a>
+		</div>
+		<div class="footer-content">
+			<h1>CAR UI is an initiative of UNITiD interaction designers</h1>
+			<p>
+                Digital interactive displays are popping up in all new produced cars. And with this trend, new problems of interaction arise, that were long covered in the era of physical buttons and sliders. With our experience in digital design we believed that it was time to pinpoint those problems, and started our CAR UI initiative.
+
+            </p>
+			<div class="footer-branding">
+				<a href="/">
+					<span class="icon icon-car-ux-logo-white">CAR UI</span>
+				</a>
+				<a href="http://www.unitid.nl/">
+					<span class="icon icon-unitid-logo">UNITiD</span>
+				</a>
+				<a href="http://voorhoede.nl/portfolio/car-ui/">
+					<span class="icon icon-voorhoede-logo">De Voorhoede</span>
+				</a>
+			</div>
+			<div class="footer-social">
+				<p>Follow us</p>
+				<a target="_blank" class="social-button icon-facebook-white-black" href="https://www.facebook.com/Caruserinterface">Facebook</a>
+				<a target="_blank" class="social-button icon-twitter-white-black" href="https://twitter.com/ui_car">Twitter</a>
+				<a target="_blank" class="social-button icon-gplus-white-black" href="https://plus.google.com/+CaruiInfo/">Google Plus</a>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
 		</div>
 		<div class="app-guide-preview-bottom">
 			<div class="app-guide-crop-mark"></div>
@@ -97,6 +140,63 @@ Footer (preview)
 		
 
 		
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML 
+<a href="#section-code-html"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>&lt;!-- footer -->
+&lt;footer class="footer" data-component="footer">
+	&lt;div class="max-width-centered">
+		&lt;div class="footer-contact">
+			&lt;h2>Review requests or comments?&lt;/h2>
+			&lt;p>
+                We are always open to review requests or comments on the information and reviews on this website.
+
+			&lt;/p>
+			&lt;a class="ui-button-secondary" href="mailto:review@carui.info?subject=Car%20UI%20Review%20request%20/%20feedback">
+				Email us
+			&lt;/a>
+		&lt;/div>
+		&lt;div class="footer-content">
+			&lt;h1>CAR UI is an initiative of UNITiD interaction designers&lt;/h1>
+			&lt;p>
+                Digital interactive displays are popping up in all new produced cars. And with this trend, new problems of interaction arise, that were long covered in the era of physical buttons and sliders. With our experience in digital design we believed that it was time to pinpoint those problems, and started our CAR UI initiative.
+
+            &lt;/p>
+			&lt;div class="footer-branding">
+				&lt;a href="/">
+					&lt;span class="icon icon-car-ux-logo-white">CAR UI&lt;/span>
+				&lt;/a>
+				&lt;a href="http://www.unitid.nl/">
+					&lt;span class="icon icon-unitid-logo">UNITiD&lt;/span>
+				&lt;/a>
+				&lt;a href="http://voorhoede.nl/portfolio/car-ui/">
+					&lt;span class="icon icon-voorhoede-logo">De Voorhoede&lt;/span>
+				&lt;/a>
+			&lt;/div>
+			&lt;div class="footer-social">
+				&lt;p>Follow us&lt;/p>
+				&lt;a target="_blank" class="social-button icon-facebook-white-black" href="https://www.facebook.com/Caruserinterface">Facebook&lt;/a>
+				&lt;a target="_blank" class="social-button icon-twitter-white-black" href="https://twitter.com/ui_car">Twitter&lt;/a>
+				&lt;a target="_blank" class="social-button icon-gplus-white-black" href="https://plus.google.com/+CaruiInfo/">Google Plus&lt;/a>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/footer>
+&lt;!-- /footer -->
+</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_footer.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_footer.html" download="_footer.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		
 
 		
 		<section id="section-code-css">
@@ -108,8 +208,8 @@ Footer (preview)
 
 			</h3>
 			<div class="app-guide-code">
-				<pre class="language-css"><code>@import "assets/scss/variables";
-@import "assets/scss/helpers";
+				<pre class="language-css"><code>@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
 
 /* footer component */
 

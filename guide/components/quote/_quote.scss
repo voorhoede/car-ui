@@ -1,0 +1,50 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* quote component */
+
+.quote {
+	padding-bottom: 40px;
+	blockquote {
+		color: $white;
+		position: relative;
+		font-size: 26px;
+		padding: 0 20px 0 40px;
+		margin: 0 10px;
+
+		@include min-screen($break-small) {
+			padding: 0 40px;
+		}
+
+		@include min-screen($break-large) {
+			font-size: 36px;
+			padding: 0 40px 0 50px;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			font-size: 100px;
+		}
+
+		&:before {
+			left: 0;
+			top: -48px;
+			content: '\2018';
+
+			@include min-screen($break-large) {
+				left: -10px;
+			}
+		}
+
+		&:after {
+			right: 0;
+			bottom: -42px;
+			content: '\201A';
+
+			@include min-screen($break-large) {
+				right: -10px;
+			}
+		}
+	}
+}

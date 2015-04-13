@@ -1,0 +1,98 @@
+{% macro shortlist(content) %}
+<!-- shortlist -->
+<div class="shortlist" data-component="shortlist">
+	<section class="max-width-centered">
+		<h1>{{ content.mainTitle }}</h1>
+		{% for product in content.products %}<!--
+		--><a class="shortlist-product" href="{{ product.url }}">
+		<img src="{{ product.visual }}" alt="{{ product.title  + ' - ' + product.subTitle }}" />
+		<div class="equalHeight" data-equal-height>
+			<div class="shortlist-title">
+				<h2>{{ product.title }}<span>{{ product.subTitle }}</span></h2>
+				<span class="shortlist-score">{{ product.score }}</span>
+			</div>
+			<div class="shortlist-summary">
+				<hr/>
+				<ul>
+					{% for goodText in product.summary.good %}
+					<li><span class="icon icon-plus-yellow"></span>{{ goodText }}</li>
+					{% endfor %}
+				</ul>
+				<ul>
+					{% for badText in product.summary.bad %}
+					<li><span class="icon icon-min-red"></span>{{ badText }}</li>
+					{% endfor %}
+				</ul>
+				<hr/>
+				<time>{{ product.date }}</time>
+			</div>
+		</div>
+	</a><!--
+	-->{% endfor %}
+	</section>
+</div>
+<!-- /shortlist -->
+{% endmacro %}
+
+{%
+	set shortlistContent = {
+		mainTitle: 'DE TOP BESTE INTERFACES',
+		products: [
+			{
+				title: 'Nissan Quashqai Tekna Opique',
+				subTitle: 'Si4 4WD Dynamic',
+				score: '4.5',
+				visual: pathToAssets + 'images/related/nissan-quashqai-tekna-opique.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Opel Insignia',
+				subTitle: 'Business Edition',
+				score: '2',
+				visual: pathToAssets + 'images/related/opel-insignia-business-edition.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			},
+			{
+				title: 'Citroën C4 Picasso',
+				subTitle: 'Business Edition',
+				score: '5.5',
+				visual: pathToAssets + 'images/related/citroen-c4-picasso.jpg',
+				url: hrefPrefix + '/modules/views/bmw-i3-nl/bmw-i3-nl.html',
+				date: '02-02-2014',
+				summary: {
+					good: [
+						'De UI is contrastrijk',
+						'Hardware knop'
+					],
+					bad: [
+						'De inputmethode',
+						'Navigatie viel tegen'
+					]
+				}
+			}
+		]
+	}
+%}
+{{ shortlist(shortlistContent) }}
