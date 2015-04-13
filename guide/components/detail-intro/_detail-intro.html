@@ -1,14 +1,11 @@
 {% macro detailIntro(content) %}
-{% import "components/widget-score/_widget-score.html" as widgetScore %}
 <!-- intro -->
 <div class="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}">
 	<img itemprop="image" class="intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
 	<section class="intro-content max-width-centered" data-intro-section>
 		<article class="intro-text" data-intro-text>
 			<header>
-				{% if content.widgetScore %}
 				<img class="intro-title-image" src="{{ content.titleImage }}" alt="{{ content.titleImageAlt }}" />
-				{% endif %}
 				<h1 itemprop="name">
 					{{ content.title }}
 					<span class="subtitle">{{ content.subtitle }}</span>
@@ -69,9 +66,9 @@
 {%
 	set content = {
 		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
-		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImage: '/static/images/bmw-i3-dashboard.jpg',
 		backgroundImageAlt: 'BMW i3 dashboard',
-		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImage: '/static/images/bmw-i3-small.jpg',
 		titleImageAlt: 'BMW i3 small',
 		title: 'BMW i3',
 		subtitle: 'Full Electric',

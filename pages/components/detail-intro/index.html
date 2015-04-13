@@ -62,10 +62,7 @@ Detail intro (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Detail intro</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		<!--
-Add an optional short description here for `detail-intro` component.
-Or delete this file if not applicable.
--->
+		
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -83,16 +80,13 @@ Or delete this file if not applicable.
 		</div>
 		<div class="app-guide-preview">
 			{% macro detailIntro(content) %}
-{% import "components/widget-score/_widget-score.html" as widgetScore %}
 <!-- intro -->
 <div class="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}">
 	<img itemprop="image" class="intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
 	<section class="intro-content max-width-centered" data-intro-section>
 		<article class="intro-text" data-intro-text>
 			<header>
-				{% if content.widgetScore %}
 				<img class="intro-title-image" src="{{ content.titleImage }}" alt="{{ content.titleImageAlt }}" />
-				{% endif %}
 				<h1 itemprop="name">
 					{{ content.title }}
 					<span class="subtitle">{{ content.subtitle }}</span>
@@ -153,9 +147,9 @@ Or delete this file if not applicable.
 {%
 	set content = {
 		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
-		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImage: '/static/images/bmw-i3-dashboard.jpg',
 		backgroundImageAlt: 'BMW i3 dashboard',
-		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImage: '/static/images/bmw-i3-small.jpg',
 		titleImageAlt: 'BMW i3 small',
 		title: 'BMW i3',
 		subtitle: 'Full Electric',
@@ -230,16 +224,13 @@ Or delete this file if not applicable.
 			</h3>
 			<div class="app-guide-code">
 				<pre class="language-markup"><code>{% macro detailIntro(content) %}
-{% import "components/widget-score/_widget-score.html" as widgetScore %}
 &lt;!-- intro -->
 &lt;div class="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}" data-component="{% if content.widgetScore %}detail-intro{% else %}detail-intro-text{% endif %}">
 	&lt;img itemprop="image" class="intro-background" src="{{ content.backgroundImage }}" alt="{{ content.backgroundImageAlt }}" />
 	&lt;section class="intro-content max-width-centered" data-intro-section>
 		&lt;article class="intro-text" data-intro-text>
 			&lt;header>
-				{% if content.widgetScore %}
 				&lt;img class="intro-title-image" src="{{ content.titleImage }}" alt="{{ content.titleImageAlt }}" />
-				{% endif %}
 				&lt;h1 itemprop="name">
 					{{ content.title }}
 					&lt;span class="subtitle">{{ content.subtitle }}&lt;/span>
@@ -300,9 +291,9 @@ Or delete this file if not applicable.
 {%
 	set content = {
 		pageUrl: 'http://www.carui.info/bmw-i3-nl/',
-		backgroundImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-dashboard.jpg',
+		backgroundImage: '/static/images/bmw-i3-dashboard.jpg',
 		backgroundImageAlt: 'BMW i3 dashboard',
-		titleImage: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg',
+		titleImage: '/static/images/bmw-i3-small.jpg',
 		titleImageAlt: 'BMW i3 small',
 		title: 'BMW i3',
 		subtitle: 'Full Electric',

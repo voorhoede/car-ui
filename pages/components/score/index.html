@@ -62,10 +62,7 @@ Score (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Score</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		<!--
-Add an optional short description here for `score` component.
-Or delete this file if not applicable.
--->
+		
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -100,17 +97,17 @@ Or delete this file if not applicable.
 			<h2>{{ property | capitalize }}</h2>
 			<span class="arrow-box"><span class="score-read-more"></span><span data-icon-arrow class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}"></span></span>
 		</a>
-		<div class="score-content {% if value.visual %}has-visual{% endif %}" data-expandible-content>
+		<div class="score-content has-visual" data-expandible-content>
 			<div class="score-box-wrapper">
 				<div class="score-box">
 					<span class="score-number">{{ value.score }}</span>
-					<span class="icon icon-gauge{{ content.gaugeScore }}"></span>
+					<span class="score-icon icon icon-gauge{{ content.gaugeScore }}"></span>
 				</div>
 			</div><!--
 			--><p>
 				{{ value.description }}
-			</p>{% if value.visual %}<!--
-			--><img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />{% endif %}
+			</p><!--
+			--><img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />
 		</div>
 	</div>
 	{% endfor %}
@@ -136,23 +133,27 @@ Or delete this file if not applicable.
 				uitstraling: {
 					score: '4',
 					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
-					visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg'
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				contrast: {
 					score: '5',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				focus: {
 					score: '4',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				usability: {
 					score: '4',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				features: {
 					score: '3',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				}
 			},
 			summary: {
@@ -218,17 +219,17 @@ Or delete this file if not applicable.
 			&lt;h2>{{ property | capitalize }}&lt;/h2>
 			&lt;span class="arrow-box">&lt;span class="score-read-more">&lt;/span>&lt;span data-icon-arrow class="icon {% if loop.first %} icon-arrow-up-white {% else %} icon-arrow-down-white {% endif %}">&lt;/span>&lt;/span>
 		&lt;/a>
-		&lt;div class="score-content {% if value.visual %}has-visual{% endif %}" data-expandible-content>
+		&lt;div class="score-content has-visual" data-expandible-content>
 			&lt;div class="score-box-wrapper">
 				&lt;div class="score-box">
 					&lt;span class="score-number">{{ value.score }}&lt;/span>
-					&lt;span class="icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
+					&lt;span class="score-icon icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
 				&lt;/div>
 			&lt;/div>&lt;!--
 			-->&lt;p>
 				{{ value.description }}
-			&lt;/p>{% if value.visual %}&lt;!--
-			-->&lt;img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />{% endif %}
+			&lt;/p>&lt;!--
+			-->&lt;img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />
 		&lt;/div>
 	&lt;/div>
 	{% endfor %}
@@ -254,23 +255,27 @@ Or delete this file if not applicable.
 				uitstraling: {
 					score: '4',
 					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
-					visual: pathToAssets + 'images/bmw-i3-nl/bmw-i3-small.jpg'
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				contrast: {
 					score: '5',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				focus: {
 					score: '4',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				usability: {
 					score: '4',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				},
 				features: {
 					score: '3',
-					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.'
+					description: 'De blauwe lijnen die op het exterieur en in het interieur te vinden zijn komen ook in de interfaces terug, dit is een mooi detail. Tab-achtige lijnen komen voor zowel in de UI als in het dashboard achter de UI. De backlights van de knoppen om de UI heen zijn niet blauw, maar rood. Het font dat gebruikt is is niet hetzelfde als op de buttons, maar dit stoort niet.',
+					visual: '/static/images/bmw-i3-small.jpg'
 				}
 			},
 			summary: {

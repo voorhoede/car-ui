@@ -62,10 +62,7 @@ Home intro (preview)
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
 	<h1 class="section-title app-guide-content">Home intro</h1>
 	<div class="app-guide-content app-guide-markdown language-markdown">
-		<!--
-Add an optional short description here for `home-intro` component.
-Or delete this file if not applicable.
--->
+		
 	</div>
 
 	<section id="section-preview" class="app-guide-section">
@@ -100,11 +97,10 @@ Or delete this file if not applicable.
 <!-- /home-intro -->
 {% endmacro %}
 
-{# this will only output in component guide #}
 {%
 	set homeIntroContent = {
 		url: '#',
-		backgroundImage: pathToAssets + 'images/home/home-intro.jpg',
+		backgroundImage: '/static/images/home-intro.jpg',
 		backgroundImageAlt: '',
 		title: 'WAAR GAAT DIT OVER?',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
@@ -157,11 +153,10 @@ Or delete this file if not applicable.
 &lt;!-- /home-intro -->
 {% endmacro %}
 
-{# this will only output in component guide #}
 {%
 	set homeIntroContent = {
 		url: '#',
-		backgroundImage: pathToAssets + 'images/home/home-intro.jpg',
+		backgroundImage: '/static/images/home-intro.jpg',
 		backgroundImageAlt: '',
 		title: 'WAAR GAAT DIT OVER?',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
