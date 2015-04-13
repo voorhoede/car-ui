@@ -4,7 +4,7 @@
     <section class="max-width-centered">
       <h1>{{ title }}</h1>
       {% for review in reviews %}
-      <a href="{{ content.url }}" class="featured-content">
+      <a href="{{ url(review) }}" class="featured-content">
         <img src="{{ review.summary_visual|imageSize(900,200) }}" alt="{{ review.title + ' ' + review.sub_title }}"/>
 
         <div class="featured-content-wrapper">
