@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 		var jsFilename = componentsDirectory + name + '/_' + name + '.js';
 		var js = file.exists(jsFilename) ? file.read(jsFilename) : '';
 
-		var readmeFilename = componentsDirectory + name + 'README.md';
+		var readmeFilename = componentsDirectory + name + '/README.md';
 		var readme = file.exists(readmeFilename) ? file.read(readmeFilename) : '';
 		readme = marked(readme)
 			.replace(/<code>/g, '<code class="language-unknown">'); // triggers primsjs css
