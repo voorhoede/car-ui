@@ -1,3 +1,4 @@
+var compiler    = require('./utilities/compiler');
 var fs 			= require('fs');
 var grunt 		= require('grunt');
 var marked  	= require('marked');
@@ -14,39 +15,15 @@ module.exports = function (grunt) {
 	var guideDirectory = 'front-end-guide/';
 	var pagesDirectory = 'pages/';
 	var file = grunt.file;
-	var webRoot = './';
+	var webRoot = './'
 
-	function getTemplate (path) {
-        return env.getTemplate(path);
-    }
-
-	function isNotUnderscored (str) {
-        return !(str.substring(0,1).match(/_/g));
-    }
-
-	function getComponents () {
-        return fs.readdirSync(componentsDirectory)
-	        .filter(isNotUnderscored)
-	        .filter(function(name){
-	            return grunt.file.isDir(componentsDirectory + name);
-	    });
-    }
-
-    function getViews () {
-        return fs.readdirSync(viewsDirectory)
-            .filter(isNotUnderscored)
-            .filter(function(name){
-                return grunt.file.isDir(viewsDirectory + name);
-            });
-    }
-
-	var template = getTemplate('/front-end-guide/front-end-guide.html');
+	var template = compiler.getTemplate('/front-end-guide/front-end-guide.html');
 	var html = template.render({
 		'name': 'Front-end Guide',
 		'pathToAssets': '/static/',
 		'pathToGuide': webRoot + 'guide/',
-		'components': getComponents(),
-		'views': getViews()
+		'components': compiler.getComponents(),
+		'views': compiler.getViews()
 	});
 
 	grunt.file.write(pagesDirectory + guideDirectory + '/index.html', html);
