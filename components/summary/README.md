@@ -1,1 +1,0 @@
-The summary component has a margin-top of -500px. For layout reasons this margin has been removed in the component preview.
