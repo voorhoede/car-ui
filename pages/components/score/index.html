@@ -104,7 +104,7 @@ Score (preview)
 					<span class="score-icon icon icon-gauge{{ content.gaugeScore }}"></span>
 				</div>
 			</div><!--
-			--><p>
+			--><p class="score-content-description">
 				{{ value.description }}
 			</p><!--
 			--><img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />
@@ -226,7 +226,7 @@ Score (preview)
 					&lt;span class="score-icon icon icon-gauge{{ content.gaugeScore }}">&lt;/span>
 				&lt;/div>
 			&lt;/div>&lt;!--
-			-->&lt;p>
+			-->&lt;p class="score-content-description">
 				{{ value.description }}
 			&lt;/p>&lt;!--
 			-->&lt;img class="score-content-visual" src="{{ value.visual }}" alt="{{ property | capitalize }}" />
@@ -440,11 +440,20 @@ Score (preview)
 		padding-top: 15px;
 		padding-right: 3em;
 		padding-bottom: 15px;
+		
 		@include min-screen($break-medium) {
 			padding-right: 5em;
 			&.has-visual {
-				padding-right: 2em;
-				p {
+				
+			}
+		}
+	}
+
+	.score-content.has-visual {
+		@media screen and (min-width: 900px) {}
+			padding-right: 2em;
+				
+				.score-content-description {
 					width: 50%;
 				}
 				.score-content-visual {
@@ -453,9 +462,9 @@ Score (preview)
 					vertical-align: top;
 					padding-left: 20px;
 				}
-			}
 		}
 	}
+
 	.score-content-visual {
 		margin-top: 1em;
 		max-width: 100%;
