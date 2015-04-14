@@ -24,13 +24,13 @@
             Each view is unique and compiled out of one or more components.
         </p>
         <ul>
-            {% for view in views %}
+            {% for compiledView in compiledViews %}
             <li>
-                <a href="{{ '/views/' + view + '/' + 'index.html' }}">
-                    {{ view | replace("-"," ") | capitalize }}
+                <a href="{{ '/views/' + compiledView + '/' + 'index.html' }}">
+                    {{ compiledView | replace("-"," ") | capitalize }}
                 </a>
                 <a class="app-guide-icon app-guide-icon-tags"
-                   href="{{ '/views/' + view + '/' + 'index.html?debug' }}"></a>
+                   href="{{ '/views/' + compiledView + '/' + 'index.html?debug' }}"></a>
             </li>
             {% endfor %}
         </ul>

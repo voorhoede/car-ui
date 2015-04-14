@@ -23,7 +23,8 @@ module.exports = function (grunt) {
 		'pathToAssets': '/static/',
 		'pathToGuide': webRoot + 'guide/',
 		'components': compiler.getComponents(),
-		'views': compiler.getViews()
+		'views': compiler.getViews(),
+		'compiledViews': compiler.getCompiledViews()
 	});
 
 	grunt.file.write(pagesDirectory + guideDirectory + '/index.html', html);

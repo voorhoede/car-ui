@@ -10,6 +10,7 @@ var nunjucks = require('nunjucks');
         new nunjucks.FileSystemLoader('guide')
     ]);
     var templatesDirectory = 'templates/';
+    var viewsDirectory = 'pages/views/';
     var componentsDirectory = 'guide/components/';
 
 	function getTemplate (path) {
@@ -38,10 +39,19 @@ var nunjucks = require('nunjucks');
 	    });
     }
 
+    function getCompiledViews () {
+        return fs.readdirSync(viewsDirectory)
+            .filter(isNotUnderscored)
+            .filter(function(name){
+                return grunt.file.isDir(viewsDirectory + name);
+        });
+    }
+
 	module.exports = {
 		getTemplate: getTemplate,
 		isNotUnderscored: isNotUnderscored,
 		getViews: getViews,
-		getComponents: getComponents
+		getComponents: getComponents,
+        getCompiledViews: getCompiledViews
 	}
 }());
