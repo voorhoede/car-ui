@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 	var file = grunt.file;
 
 	var previewer = compiler.getTemplate(
-			'../guide/_component-previewer/component-previewer-object.html');
+			'../guide/_previewer/view-previewer.html');
 
 	function compilePreview(name) {
 		var htmlFilename = templatesDirectory + name + '/' + name + '.html';

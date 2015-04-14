@@ -1,0 +1,1 @@
+The previewer view is used to compile a preview page for each component and view.

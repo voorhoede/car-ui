@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 	var file = grunt.file;
 
 	var previewer = compiler.getTemplate(
-			'../guide/_component-previewer/component-previewer.html');
+			'../guide/_previewer/component-previewer.html');
 
 	function compilePreview (name) {
 
