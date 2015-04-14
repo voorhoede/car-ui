@@ -39,19 +39,10 @@ var nunjucks = require('nunjucks');
 	    });
     }
 
-    function getCompiledViews () {
-        return fs.readdirSync(viewsDirectory)
-            .filter(isNotUnderscored)
-            .filter(function(name){
-                return grunt.file.isDir(viewsDirectory + name);
-        });
-    }
-
 	module.exports = {
 		getTemplate: getTemplate,
 		isNotUnderscored: isNotUnderscored,
 		getViews: getViews,
-		getComponents: getComponents,
-        getCompiledViews: getCompiledViews
+		getComponents: getComponents
 	}
 }());
