@@ -16,7 +16,7 @@
 			var name = component.getAttribute('data-component');
 			var label = document.createElement('a');
 			label.innerHTML = name;
-			label.href = '/modules/components/' + name + '/preview.html';
+			label.href = '/components/' + name + '/index.html';
 			helpers.dom.addClass(label, 'debug-label');
 			component.appendChild(label);
 		});
